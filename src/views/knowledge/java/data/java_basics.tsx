@@ -1,4 +1,12 @@
-import { JavaBasicsWhatIsJava, JavaBasicsWhatIsOOP } from "../../../../components/knowledge/java/data_basics";
+import { 
+    JavaBasicsWhatIsJava, 
+    JavaBasicsWhatIsOOP,
+    JavaBasicsStringDifference,
+    JavaBasicsCollections,
+    JavaBasicsConcurrency,
+    JavaBasicsJVM,
+    JavaBasicsIO
+} from "../../../../components/knowledge/java/basics";
 
 /**
  * # Java 基础
@@ -20,6 +28,11 @@ export function JavaBasics() {
             <div className="space-y-6">
                 <JavaBasicsWhatIsOOP id="java-basics-1" />
                 <JavaBasicsWhatIsJava id="java-basics-2" />
+                <JavaBasicsStringDifference id="java-basics-3" />
+                <JavaBasicsCollections id="java-basics-4" />
+                <JavaBasicsConcurrency id="java-basics-5" />
+                <JavaBasicsJVM id="java-basics-6" />
+                <JavaBasicsIO id="java-basics-7" />
             </div>
         </div>
     );

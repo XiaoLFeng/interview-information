@@ -29,7 +29,7 @@ export function QuestionCard({ question, children }: QuestionCardProps) {
                             className={`badge badge-soft badge-sm ${showAnswer ? 'badge-success' : 'badge-error'} cursor-pointer`}
                             onClick={() => setShowAnswer(!showAnswer)}
                         >
-                            <i className={`fi ${showAnswer ? 'fi-rr-eye-crossed' : 'fi-rr-eye'} flex`}></i>
+                            <i className={`fi ${showAnswer ? 'fi-rr-eye-crossed' : 'fi-rr-eye'} flex transition-all`}></i>
                             {showAnswer ? '隐藏答案' : '查看答案'}
                         </span>
                     </div>

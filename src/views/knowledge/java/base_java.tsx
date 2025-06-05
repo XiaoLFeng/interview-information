@@ -5,57 +5,17 @@ import type { MenuItem } from "../../../components/base/knowledge_side_menu";
 // Java 知识点菜单
 const javaMenuItems: MenuItem[] = [
     {
-        id: "overview",
-        label: "Java 概览",
+        id: "base",
+        label: "Java 基础",
         path: "/knowledge/java",
         icon: "fi fi-rr-apps",
-        description: "技能树和学习路径"
+        description: "Java 基础知识"
     },
-    {
-        id: "collections",
-        label: "集合框架",
-        path: "/knowledge/java/collections",
-        icon: "fi fi-rr-list",
-        description: "List、Set、Map 详解"
-    },
-    {
-        id: "concurrent",
-        label: "并发编程",
-        path: "/knowledge/java/concurrent",
-        icon: "fi fi-rr-time-forward",
-        description: "多线程、锁、并发工具"
-    },
-    {
-        id: "jvm",
-        label: "JVM 原理",
-        path: "/knowledge/java/jvm",
-        icon: "fi fi-rr-settings",
-        description: "内存模型、垃圾回收"
-    },
-    {
-        id: "spring",
-        label: "Spring 框架",
-        path: "/knowledge/java/spring",
-        icon: "fi fi-rr-leaf",
-        description: "IoC、AOP、Spring Boot"
-    },
-    {
-        id: "database",
-        label: "数据库相关",
-        path: "/knowledge/java/database",
-        icon: "fi fi-rr-database",
-        description: "JDBC、MyBatis、JPA"
-    },
-    {
-        id: "network",
-        label: "网络编程",
-        path: "/knowledge/java/network",
-        icon: "fi fi-rr-wifi",
-        description: "Socket、HTTP、RPC"
-    }
 ];
 
 export function BaseJava() {
+    document.title = "Java技术栈 - 筱锋的知识库";
+
     return (
         <div className="flex h-full">
             {/* 左侧菜单 - 固定不随滚动 */}

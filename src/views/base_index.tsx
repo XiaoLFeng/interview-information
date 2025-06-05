@@ -1,6 +1,8 @@
 import { Link } from "react-router";
 
 export default function BaseIndex() {
+    document.title = "筱锋的知识库";
+
     return (
         <div className="min-h-screen bg-base-100">
             {/* 头部区域 */}
