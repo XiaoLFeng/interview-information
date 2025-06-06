@@ -1,6 +1,6 @@
 import { QuestionCard } from "../../../../base/knowledge_question_card"
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { github } from 'react-syntax-highlighter/dist/esm/styles/hljs'
+import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { PrimaryCard } from "../../../../card/primary_card"
 import { SecondaryCard } from "../../../../card/secondary_card"
 import { InfoCard } from "../../../../card/info_card"
@@ -53,7 +53,7 @@ export function JavaBasicsFinalFinallyFinalize({ id }: { id: string }) {
                 <InfoCard title="final 关键字详解">
                     <div className="space-y-4">
                         <h4 className="font-semibold text-base-content">1. final 变量 - 常量</h4>
-                        <SyntaxHighlighter language="java" style={github} className="rounded-lg">
+                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
 {`public class FinalExample {
     // 编译时常量
     public static final int MAX_SIZE = 100;
@@ -78,7 +78,7 @@ export function JavaBasicsFinalFinallyFinalize({ id }: { id: string }) {
                         </SyntaxHighlighter>
 
                         <h4 className="font-semibold text-base-content mt-4">2. final 方法 - 不可重写</h4>
-                        <SyntaxHighlighter language="java" style={github} className="rounded-lg">
+                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
 {`public class Parent {
     // final方法不能被子类重写
     public final void finalMethod() {
@@ -102,7 +102,7 @@ public class Child extends Parent {
                         </SyntaxHighlighter>
 
                         <h4 className="font-semibold text-base-content mt-4">3. final 类 - 不可继承</h4>
-                        <SyntaxHighlighter language="java" style={github} className="rounded-lg">
+                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
 {`// final类不能被继承
 public final class String {
     // String类的实现
@@ -123,7 +123,7 @@ public final class Integer {
                 <InfoCard title="finally 语句块详解">
                     <div className="space-y-4">
                         <h4 className="font-semibold text-base-content">基本用法：</h4>
-                        <SyntaxHighlighter language="java" style={github} className="rounded-lg">
+                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
 {`public class FinallyExample {
     public void readFile(String filename) {
         FileInputStream fis = null;
@@ -148,7 +148,7 @@ public final class Integer {
                         </SyntaxHighlighter>
 
                         <h4 className="font-semibold text-base-content mt-4">try-with-resources (推荐)：</h4>
-                        <SyntaxHighlighter language="java" style={github} className="rounded-lg">
+                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
 {`public void readFileModern(String filename) {
     // 自动资源管理，无需手动finally
     try (FileInputStream fis = new FileInputStream(filename);
@@ -176,7 +176,7 @@ public final class Integer {
                         </WarningCard>
 
                         <h4 className="font-semibold text-error-content">finalize 的问题：</h4>
-                        <SyntaxHighlighter language="java" style={github} className="rounded-lg">
+                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
 {`public class ProblematicClass {
     @Override
     protected void finalize() throws Throwable {
@@ -202,7 +202,7 @@ public class FinalizeProblems {
                         </SyntaxHighlighter>
 
                         <h4 className="font-semibold text-error-content mt-4">推荐的替代方案：</h4>
-                        <SyntaxHighlighter language="java" style={github} className="rounded-lg">
+                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
 {`// 1. 实现 AutoCloseable 接口
 public class ModernResource implements AutoCloseable {
     private boolean closed = false;

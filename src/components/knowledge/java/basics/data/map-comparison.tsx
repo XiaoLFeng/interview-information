@@ -1,6 +1,6 @@
 import { QuestionCard } from "../../../../base/knowledge_question_card"
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { idea } from 'react-syntax-highlighter/dist/esm/styles/hljs'
+import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { PrimaryCard } from "../../../../card/primary_card"
 import { SecondaryCard } from "../../../../card/secondary_card"
 import { InfoCard } from "../../../../card/info_card"
@@ -42,7 +42,7 @@ export function JavaBasicsMapComparison({ id }: { id: string }) {
                     </div>
                 </SecondaryCard>
 
-                <InfoCard title="🚀 ConcurrentHashMap">
+                <InfoCard title="ConcurrentHashMap">
                     <div className="space-y-3">
                         <p><strong>线程安全：</strong><span className="badge badge-success">分段锁/CAS</span></p>
                         <p><strong>Null支持：</strong><span className="badge badge-error">不允许null</span></p>
@@ -130,7 +130,7 @@ export function JavaBasicsMapComparison({ id }: { id: string }) {
                         </ul>
 
                         <h4 className="font-semibold text-base-content mt-4">基本使用示例：</h4>
-                        <SyntaxHighlighter language="java" style={idea} className="rounded-lg">
+                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
 {`// HashMap基本使用
 Map<String, Integer> map = new HashMap<>();
 map.put("apple", 5);
@@ -165,7 +165,7 @@ map.forEach((key, value) ->
                         </ul>
 
                         <h4 className="font-semibold text-warning-content mt-4 mb-2">解决方案：</h4>
-                        <SyntaxHighlighter language="java" style={idea} className="rounded-lg">
+                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
 {`// ❌ 多线程环境下的问题
 Map<String, Integer> map = new HashMap<>();
 // 并发修改可能导致数据丢失、死循环等问题
@@ -208,7 +208,7 @@ public Integer get(String key) {
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                             <div>
                                 <h5 className="font-semibold text-info mb-2">JDK 1.7 - 分段锁</h5>
-                                <SyntaxHighlighter language="java" style={idea} className="rounded-lg">
+                                <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
 {`// JDK 1.7 分段锁机制
 // 将数据分成多个Segment，每个Segment独立加锁
 class ConcurrentHashMap<K,V> {
@@ -234,7 +234,7 @@ class ConcurrentHashMap<K,V> {
 
                             <div>
                                 <h5 className="font-semibold text-success mb-2">JDK 1.8+ - CAS + synchronized</h5>
-                                <SyntaxHighlighter language="java" style={idea} className="rounded-lg">
+                                <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
 {`// JDK 1.8+ 优化方案
 // 使用Node数组 + CAS + synchronized
 
@@ -285,7 +285,7 @@ private transient volatile CounterCell[] counterCells;`}
                         </ul>
 
                         <h4 className="font-semibold text-warning-content mt-4 mb-2">性能对比示例：</h4>
-                        <SyntaxHighlighter language="java" style={idea} className="rounded-lg">
+                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
 {`// 性能测试代码
 public class MapPerformanceTest {
     public static void testConcurrentPerformance() {

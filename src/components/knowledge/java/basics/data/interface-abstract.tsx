@@ -1,6 +1,6 @@
 import { QuestionCard } from "../../../../base/knowledge_question_card"
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { github } from 'react-syntax-highlighter/dist/esm/styles/hljs'
+import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { PrimaryCard } from "../../../../card/primary_card"
 import { SecondaryCard } from "../../../../card/secondary_card"
 import { InfoCard } from "../../../../card/info_card"
@@ -44,7 +44,7 @@ export function JavaBasicsInterfaceAbstract({ id }: { id: string }) {
                 <InfoCard title="接口特性详解">
                     <div className="space-y-4">
                         <h4 className="font-semibold text-base-content">JDK 8之前的传统接口：</h4>
-                        <SyntaxHighlighter language="java" style={github} className="rounded-lg">
+                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
 {`// 传统接口示例
 public interface Drawable {
     // 常量：public static final (隐式)
@@ -59,7 +59,7 @@ public interface Drawable {
                         </SyntaxHighlighter>
 
                         <h4 className="font-semibold text-base-content mt-4">JDK 8+ 现代接口特性：</h4>
-                        <SyntaxHighlighter language="java" style={github} className="rounded-lg">
+                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
 {`public interface ModernDrawable {
     // 1. 默认方法 (default methods)
     default void setColor(String color) {
@@ -95,7 +95,7 @@ public interface Drawable {
                 <InfoCard title="抽象类特性详解">
                     <div className="space-y-4">
                         <h4 className="font-semibold text-base-content">抽象类示例：</h4>
-                        <SyntaxHighlighter language="java" style={github} className="rounded-lg">
+                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
 {`public abstract class Shape {
     // 1. 实例变量
     protected String color;
@@ -227,7 +227,7 @@ public interface Drawable {
                 <InfoCard title="💼 实际应用示例对比">
                     <div className="space-y-4">
                         <h4 className="font-semibold text-base-content">接口应用 - 策略模式：</h4>
-                        <SyntaxHighlighter language="java" style={github} className="rounded-lg">
+                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
 {`// 支付策略接口
 public interface PaymentStrategy {
     boolean pay(double amount);
@@ -255,7 +255,7 @@ public class PayPalPayment implements PaymentStrategy {
                         </SyntaxHighlighter>
 
                         <h4 className="font-semibold text-base-content mt-4">抽象类应用 - 模板方法：</h4>
-                        <SyntaxHighlighter language="java" style={github} className="rounded-lg">
+                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
 {`// 数据处理抽象基类
 public abstract class DataProcessor {
     // 模板方法 - 定义处理流程

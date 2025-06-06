@@ -1,6 +1,6 @@
 import { QuestionCard } from "../../../../base/knowledge_question_card"
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { idea } from 'react-syntax-highlighter/dist/esm/styles/hljs'
+import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { PrimaryCard } from "../../../../card/primary_card"
 import { SecondaryCard } from "../../../../card/secondary_card"
 import { InfoCard } from "../../../../card/info_card"
@@ -54,7 +54,7 @@ export function JavaBasicsMethodOverloadOverride({ id }: { id: string }) {
                         <h4 className="font-semibold text-base-content mt-4">代码示例：</h4>
                         <SyntaxHighlighter 
                             language="java" 
-                            style={idea}
+                            style={oneDark}
                             className="rounded-lg"
                         >
 {`public class Calculator {
@@ -102,7 +102,7 @@ export function JavaBasicsMethodOverloadOverride({ id }: { id: string }) {
                         <h4 className="font-semibold text-base-content mt-4">代码示例：</h4>
                         <SyntaxHighlighter 
                             language="java" 
-                            style={idea}
+                            style={oneDark}
                             className="rounded-lg"
                         >
 {`// 父类
@@ -210,7 +210,7 @@ public class TestPolymorphism {
                             <h4 className="font-semibold text-warning-content mb-2">1. 重载中的自动类型转换陷阱</h4>
                             <SyntaxHighlighter 
                                 language="java" 
-                                style={idea}
+                                style={oneDark}
                                 className="rounded-lg"
                             >
 {`public class TrickExample {
@@ -232,7 +232,7 @@ public class TestPolymorphism {
                             <h4 className="font-semibold text-warning-content mb-2">2. 重写中的访问修饰符陷阱</h4>
                             <SyntaxHighlighter 
                                 language="java" 
-                                style={idea}
+                                style={oneDark}
                                 className="rounded-lg"
                             >
 {`public class Parent {
@@ -253,7 +253,7 @@ public class Child extends Parent {
                             <h4 className="font-semibold text-warning-content mb-2">3. 静态方法的"重写"陷阱</h4>
                             <SyntaxHighlighter 
                                 language="java" 
-                                style={idea}
+                                style={oneDark}
                                 className="rounded-lg"
                             >
 {`public class Parent {

@@ -1,6 +1,6 @@
 import { QuestionCard } from "../../../../base/knowledge_question_card"
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { github } from 'react-syntax-highlighter/dist/esm/styles/hljs'
+import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { PrimaryCard } from "../../../../card/primary_card"
 import { SecondaryCard } from "../../../../card/secondary_card"
 import { InfoCard } from "../../../../card/info_card"
@@ -44,7 +44,7 @@ export function JavaBasicsAutoboxingUnboxing({ id }: { id: string }) {
                 <InfoCard title="装箱拆箱机制原理">
                     <div className="space-y-4">
                         <h4 className="font-semibold text-base-content">编译器转换示例：</h4>
-                        <SyntaxHighlighter language="java" style={github} className="rounded-lg">
+                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
 {`// 源代码
 public class AutoboxingExample {
     public void example() {
@@ -158,7 +158,7 @@ public class AutoboxingExample {
                         </div>
 
                         <h4 className="font-semibold text-base-content mt-4">缓存机制示例：</h4>
-                        <SyntaxHighlighter language="java" style={github} className="rounded-lg">
+                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
 {`public class CacheExample {
     public static void main(String[] args) {
         // 缓存范围内 - 同一个对象
@@ -193,7 +193,7 @@ public class AutoboxingExample {
                 <WarningCard title="NullPointerException 陷阱">
                     <div className="space-y-4">
                         <h4 className="font-semibold text-warning-content mb-2">常见NPE场景：</h4>
-                        <SyntaxHighlighter language="java" style={github} className="rounded-lg">
+                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
 {`public class NPETraps {
     public void commonTraps() {
         // 1. null拆箱 - 最常见的陷阱
@@ -249,7 +249,7 @@ public class AutoboxingExample {
                 <WarningCard title="性能陷阱与优化">
                     <div className="space-y-4">
                         <h4 className="font-semibold text-warning-content mb-2">1. 频繁装箱拆箱的性能问题：</h4>
-                        <SyntaxHighlighter language="java" style={github} className="rounded-lg">
+                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
 {`public class PerformanceTraps {
     // ❌ 性能陷阱 - 频繁装箱
     public void badExample() {
@@ -296,7 +296,7 @@ public class AutoboxingExample {
                         </SyntaxHighlighter>
 
                         <h4 className="font-semibold text-warning-content mb-2">2. 缓存失效导致的内存问题：</h4>
-                        <SyntaxHighlighter language="java" style={github} className="rounded-lg">
+                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
 {`public class CacheIssues {
     // ❌ 大量对象创建
     public void memoryWaste() {
@@ -333,7 +333,7 @@ public class AutoboxingExample {
                     <div className="space-y-4">
                         <div>
                             <h4 className="font-semibold text-warning-content mb-2">1. == vs equals() 混淆</h4>
-                            <SyntaxHighlighter language="java" style={github} className="rounded-lg">
+                            <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
 {`// 易错示例
 Integer a = 128;
 Integer b = 128;
@@ -349,7 +349,7 @@ if (Objects.equals(a, b)) {
 
                         <div>
                             <h4 className="font-semibold text-warning-content mb-2">2. 条件运算符类型不匹配</h4>
-                            <SyntaxHighlighter language="java" style={github} className="rounded-lg">
+                            <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
 {`// 陷阱：三元运算符的类型提升
 Integer a = 1;
 Double b = 2.0;
@@ -363,7 +363,7 @@ Number result1 = true ? (Number)a : b;`}
 
                         <div>
                             <h4 className="font-semibold text-warning-content mb-2">3. 重载方法的选择问题</h4>
-                            <SyntaxHighlighter language="java" style={github} className="rounded-lg">
+                            <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
 {`public class OverloadingIssue {
     public void method(int i) { System.out.println("int: " + i); }
     public void method(Integer i) { System.out.println("Integer: " + i); }

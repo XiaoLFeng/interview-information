@@ -1,6 +1,6 @@
 import { QuestionCard } from "../../../../base/knowledge_question_card"
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { idea } from 'react-syntax-highlighter/dist/esm/styles/hljs'
+import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { PrimaryCard } from "../../../../card/primary_card"
 import { SecondaryCard } from "../../../../card/secondary_card"
 import { InfoCard } from "../../../../card/info_card"
@@ -58,7 +58,7 @@ export function JavaBasicsThreadProcess({ id }: { id: string }) {
                         </div>
 
                         <h4 className="font-semibold text-base-content mt-6">线程状态转换示例：</h4>
-                        <SyntaxHighlighter language="java" style={idea} className="rounded-lg">
+                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
 {`public class ThreadStateDemo {
     public static void main(String[] args) throws InterruptedException {
         Object lock = new Object();
@@ -283,7 +283,7 @@ export function JavaBasicsThreadProcess({ id }: { id: string }) {
                 <SuccessCard title="☕ Java中的线程实现">
                     <div className="space-y-4">
                         <h4 className="font-semibold text-success-content">1. 线程创建方式：</h4>
-                        <SyntaxHighlighter language="java" style={idea} className="rounded-lg">
+                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
 {`// 方式1: 继承Thread类
 class MyThread extends Thread {
     @Override
@@ -330,7 +330,7 @@ public class ThreadCreationDemo {
                         </SyntaxHighlighter>
 
                         <h4 className="font-semibold text-success-content">2. 线程池管理：</h4>
-                        <SyntaxHighlighter language="java" style={idea} className="rounded-lg">
+                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
 {`// 线程池创建和管理
 public class ThreadPoolDemo {
     public static void main(String[] args) {
@@ -387,7 +387,7 @@ public class ThreadPoolDemo {
                 <InfoCard title="🧠 Java内存模型与线程通信">
                     <div className="space-y-4">
                         <h4 className="font-semibold text-base-content">线程内存模型：</h4>
-                        <SyntaxHighlighter language="java" style={idea} className="rounded-lg">
+                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
 {`public class ThreadMemoryDemo {
     // 共享变量（堆内存）
     private static volatile boolean flag = false;
@@ -446,7 +446,7 @@ public class ThreadPoolDemo {
                         </SyntaxHighlighter>
 
                         <h4 className="font-semibold text-base-content">线程间协作：</h4>
-                        <SyntaxHighlighter language="java" style={idea} className="rounded-lg">
+                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
 {`// 生产者-消费者模式
 public class ProducerConsumerDemo {
     private final Queue<Integer> queue = new LinkedList<>();
