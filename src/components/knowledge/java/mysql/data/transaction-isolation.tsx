@@ -59,7 +59,7 @@ export function MySQLTransactionIsolation({ id }: { id: string }) {
             axisPointer: {
                 type: 'shadow'
             },
-            formatter: function(params: any) {
+            formatter: function(params: { name: string, value: number }[]) {
                 const level = params[0].name;
                 const performance = params[0].value;
                 const consistency = params[1].value;
