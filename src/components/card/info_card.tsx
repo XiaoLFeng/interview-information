@@ -9,7 +9,7 @@
 export function InfoCard({ title, children }: { title: string, children: React.ReactNode }) {
     return (
         <div className="mt-3 p-3 bg-info/10 border-l-4 border-info rounded">
-            <h4 className="font-semibold text-info mb-2">ℹ️ {title}</h4>
+            <h4 className="font-semibold text-info-content mb-2">🎯 {title}</h4>
             {children}
         </div>
     )

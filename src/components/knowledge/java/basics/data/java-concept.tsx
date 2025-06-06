@@ -184,7 +184,7 @@ export function JavaBasicsWhatIsJava({ id }: { id: string }) {
                 </div>
 
                 {/* 应用场景 */}
-                <InfoCard title="🎯 主要应用场景">
+                <InfoCard title="主要应用场景">
                     <div className="grid md:grid-cols-2 gap-3 text-sm">
                         <div>
                             <strong>企业级应用开发：</strong>

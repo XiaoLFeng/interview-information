@@ -9,7 +9,7 @@
 export function WarningCard({ title, children }: { title: string, children: React.ReactNode }) {
     return (
         <div className="mt-3 p-3 bg-warning/10 border-l-4 border-warning rounded">
-            <h4 className="font-semibold text-warning mb-2">⚠️ {title}</h4>
+            <h4 className="font-semibold text-warning-content mb-2">⚠️ {title}</h4>
             {children}
         </div>
     )
