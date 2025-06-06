@@ -1,11 +1,10 @@
 import { QuestionCard } from "../../../../base/knowledge_question_card"
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { PrimaryCard } from "../../../../card/primary_card"
 import { SecondaryCard } from "../../../../card/secondary_card"
 import { InfoCard } from "../../../../card/info_card"
 import { WarningCard } from "../../../../card/warning_card"
 import { SuccessCard } from "../../../../card/success_card"
+import { ExpandableCode } from "../../../../base/expandable_code"
 
 /**
  * # 自动装箱与自动拆箱详解
@@ -44,7 +43,7 @@ export function JavaBasicsAutoboxingUnboxing({ id }: { id: string }) {
                 <InfoCard title="装箱拆箱机制原理">
                     <div className="space-y-4">
                         <h4 className="font-semibold text-base-content">编译器转换示例：</h4>
-                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
+                        <ExpandableCode language="java">
 {`// 源代码
 public class AutoboxingExample {
     public void example() {
@@ -72,7 +71,7 @@ public class AutoboxingExample {
         int sum = a.intValue() + 50;
     }
 }`}
-                        </SyntaxHighlighter>
+                        </ExpandableCode>
 
                         <h4 className="font-semibold text-base-content mt-4">包装类型对应表：</h4>
                         <div className="overflow-x-auto">
@@ -158,7 +157,7 @@ public class AutoboxingExample {
                         </div>
 
                         <h4 className="font-semibold text-base-content mt-4">缓存机制示例：</h4>
-                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
+                        <ExpandableCode language="java">
 {`public class CacheExample {
     public static void main(String[] args) {
         // 缓存范围内 - 同一个对象
@@ -183,7 +182,7 @@ public class AutoboxingExample {
         System.out.println(c1 == d);         // false
     }
 }`}
-                        </SyntaxHighlighter>
+                        </ExpandableCode>
                     </div>
                 </InfoCard>
             </div>
@@ -193,7 +192,7 @@ public class AutoboxingExample {
                 <WarningCard title="NullPointerException 陷阱">
                     <div className="space-y-4">
                         <h4 className="font-semibold text-warning-content mb-2">常见NPE场景：</h4>
-                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
+                        <ExpandableCode language="java">
 {`public class NPETraps {
     public void commonTraps() {
         // 1. null拆箱 - 最常见的陷阱
@@ -239,7 +238,7 @@ public class AutoboxingExample {
         int value2 = Objects.requireNonNullElse(nullInteger, 0);
     }
 }`}
-                        </SyntaxHighlighter>
+                        </ExpandableCode>
                     </div>
                 </WarningCard>
             </div>
@@ -249,7 +248,7 @@ public class AutoboxingExample {
                 <WarningCard title="性能陷阱与优化">
                     <div className="space-y-4">
                         <h4 className="font-semibold text-warning-content mb-2">1. 频繁装箱拆箱的性能问题：</h4>
-                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
+                        <ExpandableCode language="java">
 {`public class PerformanceTraps {
     // ❌ 性能陷阱 - 频繁装箱
     public void badExample() {
@@ -293,10 +292,10 @@ public class AutoboxingExample {
         long sum = numbers.sum();  // 无拆箱
     }
 }`}
-                        </SyntaxHighlighter>
+                        </ExpandableCode>
 
                         <h4 className="font-semibold text-warning-content mb-2">2. 缓存失效导致的内存问题：</h4>
-                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
+                        <ExpandableCode language="java">
 {`public class CacheIssues {
     // ❌ 大量对象创建
     public void memoryWaste() {
@@ -322,7 +321,7 @@ public class AutoboxingExample {
         }
     }
 }`}
-                        </SyntaxHighlighter>
+                        </ExpandableCode>
                     </div>
                 </WarningCard>
             </div>
@@ -333,7 +332,7 @@ public class AutoboxingExample {
                     <div className="space-y-4">
                         <div>
                             <h4 className="font-semibold text-warning-content mb-2">1. == vs equals() 混淆</h4>
-                            <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
+                            <ExpandableCode language="java">
 {`// 易错示例
 Integer a = 128;
 Integer b = 128;
@@ -344,12 +343,12 @@ System.out.println(a.equals(b)); // true
 if (Objects.equals(a, b)) {
     // 安全的比较，处理null情况
 }`}
-                            </SyntaxHighlighter>
+                            </ExpandableCode>
                         </div>
 
                         <div>
                             <h4 className="font-semibold text-warning-content mb-2">2. 条件运算符类型不匹配</h4>
-                            <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
+                            <ExpandableCode language="java">
 {`// 陷阱：三元运算符的类型提升
 Integer a = 1;
 Double b = 2.0;
@@ -358,12 +357,12 @@ Number result = true ? a : b;  // result是Double类型的1.0，不是Integer的
 
 // 安全做法：确保类型一致
 Number result1 = true ? (Number)a : b;`}
-                            </SyntaxHighlighter>
+                            </ExpandableCode>
                         </div>
 
                         <div>
                             <h4 className="font-semibold text-warning-content mb-2">3. 重载方法的选择问题</h4>
-                            <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
+                            <ExpandableCode language="java">
 {`public class OverloadingIssue {
     public void method(int i) { System.out.println("int: " + i); }
     public void method(Integer i) { System.out.println("Integer: " + i); }
@@ -375,7 +374,7 @@ Number result1 = true ? (Number)a : b;`}
         method((int)i);   // 强制调用 method(int)
     }
 }`}
-                            </SyntaxHighlighter>
+                            </ExpandableCode>
                         </div>
                     </div>
                 </WarningCard>
@@ -392,7 +391,7 @@ Number result1 = true ? (Number)a : b;`}
                             <li>使用专门的基本类型集合库（如TroveMap）</li>
                             <li>合理利用缓存范围内的小整数</li>
                         </ul>
-                        
+
                         <h4 className="font-semibold text-success-content mt-4">代码安全：</h4>
                         <ul className="list-disc list-inside space-y-1 text-sm">
                             <li>包装类型比较始终使用equals()方法</li>
@@ -400,7 +399,7 @@ Number result1 = true ? (Number)a : b;`}
                             <li>使用Optional处理可能为null的情况</li>
                             <li>避免混合使用基本类型和包装类型进行比较</li>
                         </ul>
-                        
+
                         <h4 className="font-semibold text-success-content mt-4">设计建议：</h4>
                         <ul className="list-disc list-inside space-y-1 text-sm">
                             <li>API设计时明确基本类型还是包装类型</li>

@@ -1,0 +1,30 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+这是当前已有的卡片框架
+
+- [accent_card.tsx](mdc:src/components/card/accent_card.tsx)
+- [error_card.tsx](mdc:src/components/card/error_card.tsx) [自带 Emoji]
+- [info_card.tsx](mdc:src/components/card/info_card.tsx) [自带 Emoji]
+- [primary_card.tsx](mdc:src/components/card/primary_card.tsx)
+- [secondary_card.tsx](mdc:src/components/card/secondary_card.tsx)
+- [success_card.tsx](mdc:src/components/card/success_card.tsx) [自带 Emoji]
+- [warning_card.tsx](mdc:src/components/card/warning_card.tsx) [自带 Emoji]
+
+尽可能优先使用已有的模板，另外对于问题可以看问题框架 [knowledge_question_card.tsx](mdc:src/components/base/knowledge_question_card.tsx) 
+
+以上的文件你都不可以修改，你只能基于上面内容进行调用。
+
+对于书写知识点，你应该作为面试以及知识点的角度构建此知识库。所以内容不能过于冗长
+
+- 核心突出
+- 易错点标注
+- 表格化呈现
+- 代码高度控制【如果大于 300px 保持 300px】
+- 组件统一化
+
+对于使用代码，统一使用 `oneDark` 主题。
+
+你可以参考现有文件如 [map-comparison.tsx](mdc:src/components/knowledge/java/basics/data/map-comparison.tsx) 等已有文件进行查看

@@ -1,11 +1,10 @@
 import { QuestionCard } from "../../../../base/knowledge_question_card"
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { PrimaryCard } from "../../../../card/primary_card"
 import { SecondaryCard } from "../../../../card/secondary_card"
 import { InfoCard } from "../../../../card/info_card"
 import { WarningCard } from "../../../../card/warning_card"
 import { SuccessCard } from "../../../../card/success_card"
+import { ExpandableCode } from "../../../../base/expandable_code"
 
 /**
  * # 接口(Interface) vs 抽象类(Abstract Class)详解
@@ -44,7 +43,7 @@ export function JavaBasicsInterfaceAbstract({ id }: { id: string }) {
                 <InfoCard title="接口特性详解">
                     <div className="space-y-4">
                         <h4 className="font-semibold text-base-content">JDK 8之前的传统接口：</h4>
-                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
+                        <ExpandableCode language="java">
 {`// 传统接口示例
 public interface Drawable {
     // 常量：public static final (隐式)
@@ -56,10 +55,10 @@ public interface Drawable {
     void resize(int width, int height);
     boolean isVisible();
 }`}
-                        </SyntaxHighlighter>
+                        </ExpandableCode>
 
                         <h4 className="font-semibold text-base-content mt-4">JDK 8+ 现代接口特性：</h4>
-                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
+                        <ExpandableCode language="java">
 {`public interface ModernDrawable {
     // 1. 默认方法 (default methods)
     default void setColor(String color) {
@@ -85,7 +84,7 @@ public interface Drawable {
         draw();
     }
 }`}
-                        </SyntaxHighlighter>
+                        </ExpandableCode>
                     </div>
                 </InfoCard>
             </div>
@@ -95,7 +94,7 @@ public interface Drawable {
                 <InfoCard title="抽象类特性详解">
                     <div className="space-y-4">
                         <h4 className="font-semibold text-base-content">抽象类示例：</h4>
-                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
+                        <ExpandableCode language="java">
 {`public abstract class Shape {
     // 1. 实例变量
     protected String color;
@@ -130,7 +129,7 @@ public interface Drawable {
     public String getColor() { return color; }
     public void setColor(String color) { this.color = color; }
 }`}
-                        </SyntaxHighlighter>
+                        </ExpandableCode>
                     </div>
                 </InfoCard>
             </div>
@@ -227,7 +226,7 @@ public interface Drawable {
                 <InfoCard title="💼 实际应用示例对比">
                     <div className="space-y-4">
                         <h4 className="font-semibold text-base-content">接口应用 - 策略模式：</h4>
-                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
+                        <ExpandableCode language="java">
 {`// 支付策略接口
 public interface PaymentStrategy {
     boolean pay(double amount);
@@ -252,10 +251,10 @@ public class PayPalPayment implements PaymentStrategy {
         return true;
     }
 }`}
-                        </SyntaxHighlighter>
+                        </ExpandableCode>
 
                         <h4 className="font-semibold text-base-content mt-4">抽象类应用 - 模板方法：</h4>
-                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
+                        <ExpandableCode language="java">
 {`// 数据处理抽象基类
 public abstract class DataProcessor {
     // 模板方法 - 定义处理流程
@@ -281,7 +280,7 @@ public abstract class DataProcessor {
         System.out.println("Data saved successfully");
     }
 }`}
-                        </SyntaxHighlighter>
+                        </ExpandableCode>
                     </div>
                 </InfoCard>
             </div>

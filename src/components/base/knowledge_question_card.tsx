@@ -14,6 +14,14 @@ interface QuestionCardProps {
     children: React.ReactNode;
 }
 
+/**
+ * # 问题卡片
+ * 用于在内容中插入问题，通常用于问题和答案。
+ * 
+ * @param question 问题
+ * @param children 内容
+ * @returns 问题卡片
+ */
 export function QuestionCard({ question, children }: QuestionCardProps) {
     const [showAnswer, setShowAnswer] = useState(false);
 
@@ -24,12 +32,12 @@ export function QuestionCard({ question, children }: QuestionCardProps) {
                 <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
                     <h2 className="card-title text-xl">{question.title}</h2>
                     <div className="flex flex-wrap gap-2">
-                        <span className="badge badge-soft badge-sm">{question.category}</span>
+                        <span className="badge badge-soft">{question.category}</span>
                         <span
-                            className={`badge badge-soft badge-sm ${showAnswer ? 'badge-success' : 'badge-error'} cursor-pointer`}
+                            className={`badge badge-soft ${showAnswer ? 'badge-success' : 'badge-error'} cursor-pointer hover:scale-105 transition-all select-none`}
                             onClick={() => setShowAnswer(!showAnswer)}
                         >
-                            <i className={`fi ${showAnswer ? 'fi-rr-eye-crossed' : 'fi-rr-eye'} flex transition-all`}></i>
+                            <i className={`fi ${showAnswer ? 'fi-rr-eye-crossed' : 'fi-rr-eye'} flex`}></i>
                             {showAnswer ? '隐藏答案' : '查看答案'}
                         </span>
                     </div>

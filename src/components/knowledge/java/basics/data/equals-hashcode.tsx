@@ -1,11 +1,10 @@
 import { QuestionCard } from "../../../../base/knowledge_question_card"
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { PrimaryCard } from "../../../../card/primary_card"
 import { SecondaryCard } from "../../../../card/secondary_card"
 import { InfoCard } from "../../../../card/info_card"
 import { WarningCard } from "../../../../card/warning_card"
 import { SuccessCard } from "../../../../card/success_card"
+import { ExpandableCode } from "../../../../base/expandable_code"
 
 /**
  * # == vs equals() 和 hashCode() 协定详解
@@ -46,7 +45,7 @@ export function JavaBasicsEqualsHashcode({ id }: { id: string }) {
                 <InfoCard title="== vs equals() 详细比较">
                     <div className="space-y-4">
                         <h4 className="font-semibold text-base-content">基本使用示例：</h4>
-                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
+                        <ExpandableCode language="java">
 {`public class ComparisonExample {
     public static void main(String[] args) {
         // 基本类型比较 - == 比较值
@@ -75,7 +74,7 @@ export function JavaBasicsEqualsHashcode({ id }: { id: string }) {
         System.out.println(Objects.equals(nullStr, "test")); // false (安全)
     }
 }`}
-                        </SyntaxHighlighter>
+                        </ExpandableCode>
                     </div>
                 </InfoCard>
             </div>
@@ -87,7 +86,7 @@ export function JavaBasicsEqualsHashcode({ id }: { id: string }) {
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                             <div>
                                 <h5 className="font-semibold text-warning-content mb-2">⚠️ 容易混淆的情况</h5>
-                                <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
+                                <ExpandableCode language="java">
 {`// 字符串字面量 - 常量池
 String s1 = "hello";
 String s2 = "hello";
@@ -114,12 +113,12 @@ System.out.println(s1 == s7); // true (编译器优化)
 String prefix = "hel";
 String s8 = prefix + "lo";
 System.out.println(s1 == s8); // false`}
-                                </SyntaxHighlighter>
+                                </ExpandableCode>
                             </div>
                             
                             <div>
                                 <h5 className="font-semibold text-info mb-2">💡 intern()方法</h5>
-                                <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
+                                <ExpandableCode language="java">
 {`// intern()方法的作用
 String s1 = "hello";
 String s2 = new String("hello");
@@ -138,7 +137,7 @@ Set<String> roles = new HashSet<>();
 for (User user : users) {
     roles.add(user.getRole().intern());
 }`}
-                                </SyntaxHighlighter>
+                                </ExpandableCode>
                                 <div className="alert alert-warning mt-2">
                                     <span className="text-sm"><strong>注意：</strong>过度使用intern()可能导致永久代/元空间内存泄漏</span>
                                 </div>
@@ -195,7 +194,7 @@ for (User user : users) {
                             
                             <div>
                                 <h6 className="font-semibold text-success-content mb-2">标准实现模板</h6>
-                                <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
+                                <ExpandableCode language="java">
 {`@Override
 public boolean equals(Object obj) {
     // 1. 自反性检查
@@ -213,7 +212,7 @@ public boolean equals(Object obj) {
         && age == other.age
         && Objects.equals(email, other.email);
 }`}
-                                </SyntaxHighlighter>
+                                </ExpandableCode>
                             </div>
                         </div>
                     </div>
@@ -227,7 +226,7 @@ public boolean equals(Object obj) {
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                             <div>
                                 <h6 className="font-semibold text-base-content mb-2">常用算法</h6>
-                                <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
+                                <ExpandableCode language="java">
 {`// 方法1: Objects.hash() (推荐)
 @Override
 public int hashCode() {
@@ -249,7 +248,7 @@ public int hashCode() {
 public int hashCode() {
     return Arrays.hashCode(new Object[]{name, age, email});
 }`}
-                                </SyntaxHighlighter>
+                                </ExpandableCode>
                             </div>
                             
                             <div>
@@ -275,7 +274,7 @@ public int hashCode() {
                     <WarningCard title="错误示例">
                         <div className="space-y-4">
                             <h5 className="font-semibold text-warning-content">只重写equals，不重写hashCode</h5>
-                            <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
+                            <ExpandableCode language="java">
 {`public class BadPerson {
     private String name;
     private int age;
@@ -301,14 +300,14 @@ set.add(p1);
 System.out.println(set.contains(p2)); // false! 应该是true
 set.add(p2); // 添加了"重复"对象
 System.out.println(set.size()); // 2! 应该是1`}
-                            </SyntaxHighlighter>
+                            </ExpandableCode>
                         </div>
                     </WarningCard>
                     
                     <SuccessCard title="正确示例">
                         <div className="space-y-4">
                             <h5 className="font-semibold text-success-content">同时重写equals和hashCode</h5>
-                            <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
+                            <ExpandableCode language="java">
 {`public class GoodPerson {
     private String name;
     private int age;
@@ -337,7 +336,7 @@ set.add(p1);
 System.out.println(set.contains(p2)); // true ✅
 set.add(p2); // 不会添加重复对象
 System.out.println(set.size()); // 1 ✅`}
-                            </SyntaxHighlighter>
+                            </ExpandableCode>
                         </div>
                     </SuccessCard>
                 </div>
@@ -358,7 +357,7 @@ System.out.println(set.size()); // 1 ✅`}
                                 </ul>
                                 
                                 <h6 className="font-semibold text-warning mt-4 mb-2">❌ 性能问题示例</h6>
-                                <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
+                                <ExpandableCode language="java">
 {`// ❌ 性能问题示例
 public class SlowClass {
     private List<String> items;
@@ -375,7 +374,7 @@ public class SlowClass {
         return items.hashCode(); // 可能很慢
     }
 }`}
-                                </SyntaxHighlighter>
+                                </ExpandableCode>
                             </div>
                             
                             <div>
@@ -388,7 +387,7 @@ public class SlowClass {
                                 </ul>
                                 
                                 <h6 className="font-semibold text-success mt-4 mb-2">✅ 优化示例</h6>
-                                <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
+                                <ExpandableCode language="java">
 {`// ✅ 优化示例
 public class OptimizedClass {
     private final String id; // 最重要的标识
@@ -416,7 +415,7 @@ public class OptimizedClass {
         return hashCode;
     }
 }`}
-                                </SyntaxHighlighter>
+                                </ExpandableCode>
                             </div>
                         </div>
                     </div>

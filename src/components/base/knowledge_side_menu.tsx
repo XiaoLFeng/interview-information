@@ -14,6 +14,15 @@ interface SideMenuProps {
     menuItems: MenuItem[];
 }
 
+/**
+ * # 侧边菜单
+ * 用于在内容中插入侧边菜单，通常用于导航。
+ * 
+ * @param title 标题
+ * @param icon 图标
+ * @param menuItems 菜单项
+ * @returns 侧边菜单
+ */
 export function SideMenu({ 
     title, 
     icon, 

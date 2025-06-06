@@ -1,6 +1,5 @@
 import { QuestionCard } from "../../../../base/knowledge_question_card"
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { ExpandableCode } from "../../../../base/expandable_code"
 import { PrimaryCard } from "../../../../card/primary_card"
 import { InfoCard } from "../../../../card/info_card"
 import { WarningCard } from "../../../../card/warning_card"
@@ -119,7 +118,7 @@ export function JavaBasicsMapComparison({ id }: { id: string }) {
                                     <li>• 扰动函数减少哈希冲突</li>
                                 </ul>
                             </div>
-                            
+
                             <div className="bg-green-50 p-3 rounded border border-green-200">
                                 <h5 className="font-semibold text-green-800 mb-2">⚡ 性能优化</h5>
                                 <ul className="space-y-1 text-green-700">
@@ -132,8 +131,7 @@ export function JavaBasicsMapComparison({ id }: { id: string }) {
                         </div>
 
                         <div className="bg-gray-50 p-3 rounded">
-                            <h5 className="font-semibold mb-2">基本使用</h5>
-                            <SyntaxHighlighter language="java" style={oneDark} className="text-xs">
+                            <ExpandableCode language="java">
 {`// 基本操作
 Map<String, Integer> map = new HashMap<>();
 map.put("key", 1);
@@ -142,7 +140,7 @@ map.computeIfAbsent("key3", k -> k.length());
 
 // 遍历
 map.forEach((k, v) -> System.out.println(k + ":" + v));`}
-                            </SyntaxHighlighter>
+                            </ExpandableCode>
                         </div>
                     </div>
                 </InfoCard>
@@ -159,7 +157,7 @@ map.forEach((k, v) -> System.out.println(k + ":" + v));`}
                                 <li>• 读不加锁，写加锁</li>
                             </ul>
                         </div>
-                        
+
                         <div className="bg-purple-50 p-3 rounded border border-purple-200">
                             <h5 className="font-semibold text-purple-800 mb-2">🚀 JDK 8+: CAS + synchronized</h5>
                             <ul className="space-y-1 text-purple-700 text-sm">
@@ -179,17 +177,17 @@ map.forEach((k, v) -> System.out.println(k + ":" + v));`}
                             <div className="bg-base-200 p-3 rounded mt-2">
                                 <p><strong>错误认知：</strong>HashMap在并发下只是性能差一点</p>
                                 <p><strong>实际危害：</strong>数据丢失、死循环、数据不一致</p>
-                                <SyntaxHighlighter language="java" style={oneDark} className="text-xs mt-2">
+                                <ExpandableCode language="java">
 {`// ❌ 多线程使用HashMap
 Map<String, String> map = new HashMap<>();
 // 可能导致死循环、数据丢失
 
 // ✅ 正确做法
 Map<String, String> map = new ConcurrentHashMap<>();`}
-                                </SyntaxHighlighter>
+                                </ExpandableCode>
                             </div>
                         </div>
-                        
+
                         <div>
                             <h5 className="font-semibold text-error">❌ ConcurrentHashMap null值误区</h5>
                             <ul className="list-disc list-inside space-y-1 ml-2">

@@ -1,12 +1,11 @@
 import { QuestionCard } from "../../../../base/knowledge_question_card"
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { PrimaryCard } from "../../../../card/primary_card"
 import { SecondaryCard } from "../../../../card/secondary_card"
 import { InfoCard } from "../../../../card/info_card"
 import { WarningCard } from "../../../../card/warning_card"
 import { SuccessCard } from "../../../../card/success_card"
 import { ErrorCard } from "../../../../card/error_card"
+import { ExpandableCode } from "../../../../base/expandable_code"
 
 /**
  * # final vs finally vs finalize 详解
@@ -53,7 +52,7 @@ export function JavaBasicsFinalFinallyFinalize({ id }: { id: string }) {
                 <InfoCard title="final 关键字详解">
                     <div className="space-y-4">
                         <h4 className="font-semibold text-base-content">1. final 变量 - 常量</h4>
-                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
+                        <ExpandableCode language="java">
 {`public class FinalExample {
     // 编译时常量
     public static final int MAX_SIZE = 100;
@@ -75,10 +74,10 @@ export function JavaBasicsFinalFinallyFinalize({ id }: { id: string }) {
         // list = new ArrayList<>(); // 编译错误
     }
 }`}
-                        </SyntaxHighlighter>
+                        </ExpandableCode>
 
                         <h4 className="font-semibold text-base-content mt-4">2. final 方法 - 不可重写</h4>
-                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
+                        <ExpandableCode language="java">
 {`public class Parent {
     // final方法不能被子类重写
     public final void finalMethod() {
@@ -99,10 +98,10 @@ public class Child extends Parent {
         System.out.println("Overridden method");
     }
 }`}
-                        </SyntaxHighlighter>
+                        </ExpandableCode>
 
                         <h4 className="font-semibold text-base-content mt-4">3. final 类 - 不可继承</h4>
-                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
+                        <ExpandableCode language="java">
 {`// final类不能被继承
 public final class String {
     // String类的实现
@@ -113,7 +112,7 @@ public final class Integer {
 }
 
 // public class MyString extends String { } // 编译错误`}
-                        </SyntaxHighlighter>
+                        </ExpandableCode>
                     </div>
                 </InfoCard>
             </div>
@@ -123,7 +122,7 @@ public final class Integer {
                 <InfoCard title="finally 语句块详解">
                     <div className="space-y-4">
                         <h4 className="font-semibold text-base-content">基本用法：</h4>
-                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
+                        <ExpandableCode language="java">
 {`public class FinallyExample {
     public void readFile(String filename) {
         FileInputStream fis = null;
@@ -145,10 +144,10 @@ public final class Integer {
         }
     }
 }`}
-                        </SyntaxHighlighter>
+                        </ExpandableCode>
 
                         <h4 className="font-semibold text-base-content mt-4">try-with-resources (推荐)：</h4>
-                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
+                        <ExpandableCode language="java">
 {`public void readFileModern(String filename) {
     // 自动资源管理，无需手动finally
     try (FileInputStream fis = new FileInputStream(filename);
@@ -162,7 +161,7 @@ public final class Integer {
     }
     // 资源会自动关闭，等价于finally块
 }`}
-                        </SyntaxHighlighter>
+                        </ExpandableCode>
                     </div>
                 </InfoCard>
             </div>
@@ -176,7 +175,7 @@ public final class Integer {
                         </WarningCard>
 
                         <h4 className="font-semibold text-error-content">finalize 的问题：</h4>
-                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
+                        <ExpandableCode language="java">
 {`public class ProblematicClass {
     @Override
     protected void finalize() throws Throwable {
@@ -199,10 +198,10 @@ public class FinalizeProblems {
         System.gc(); // 仅是建议，不保证执行
     }
 }`}
-                        </SyntaxHighlighter>
+                        </ExpandableCode>
 
                         <h4 className="font-semibold text-error-content mt-4">推荐的替代方案：</h4>
-                        <SyntaxHighlighter language="java" style={oneDark} className="rounded-lg">
+                        <ExpandableCode language="java">
 {`// 1. 实现 AutoCloseable 接口
 public class ModernResource implements AutoCloseable {
     private boolean closed = false;
@@ -242,7 +241,7 @@ public class CleanerExample {
         }
     }
 }`}
-                        </SyntaxHighlighter>
+                        </ExpandableCode>
                     </div>
                 </ErrorCard>
             </div>

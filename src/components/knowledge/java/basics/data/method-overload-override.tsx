@@ -1,11 +1,10 @@
 import { QuestionCard } from "../../../../base/knowledge_question_card"
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { PrimaryCard } from "../../../../card/primary_card"
 import { SecondaryCard } from "../../../../card/secondary_card"
 import { InfoCard } from "../../../../card/info_card"
 import { WarningCard } from "../../../../card/warning_card"
 import { SuccessCard } from "../../../../card/success_card"
+import { ExpandableCode } from "../../../../base/expandable_code"
 
 /**
  * # 方法重载 vs 方法重写详解
@@ -52,11 +51,7 @@ export function JavaBasicsMethodOverloadOverride({ id }: { id: string }) {
                         </ul>
                         
                         <h4 className="font-semibold text-base-content mt-4">代码示例：</h4>
-                        <SyntaxHighlighter 
-                            language="java" 
-                            style={oneDark}
-                            className="rounded-lg"
-                        >
+                        <ExpandableCode language="java">
 {`public class Calculator {
     // 重载方法 - 不同参数数量
     public int add(int a, int b) {
@@ -81,7 +76,7 @@ export function JavaBasicsMethodOverloadOverride({ id }: { id: string }) {
         return num + str;
     }
 }`}
-                        </SyntaxHighlighter>
+                        </ExpandableCode>
                     </div>
                 </InfoCard>
             </div>
@@ -100,11 +95,7 @@ export function JavaBasicsMethodOverloadOverride({ id }: { id: string }) {
                         </ul>
                         
                         <h4 className="font-semibold text-base-content mt-4">代码示例：</h4>
-                        <SyntaxHighlighter 
-                            language="java" 
-                            style={oneDark}
-                            className="rounded-lg"
-                        >
+                        <ExpandableCode language="java">
 {`// 父类
 public class Animal {
     public void makeSound() {
@@ -137,7 +128,7 @@ public class TestPolymorphism {
         animal.makeSound(); // 输出: Dog barks (运行时决定)
     }
 }`}
-                        </SyntaxHighlighter>
+                        </ExpandableCode>
                     </div>
                 </InfoCard>
             </div>
@@ -208,11 +199,7 @@ public class TestPolymorphism {
                     <div className="space-y-4">
                         <div>
                             <h4 className="font-semibold text-warning-content mb-2">1. 重载中的自动类型转换陷阱</h4>
-                            <SyntaxHighlighter 
-                                language="java" 
-                                style={oneDark}
-                                className="rounded-lg"
-                            >
+                            <ExpandableCode language="java">
 {`public class TrickExample {
     public void test(int i) { System.out.println("int: " + i); }
     public void test(Integer i) { System.out.println("Integer: " + i); }
@@ -225,16 +212,12 @@ public class TestPolymorphism {
         example.test(null);     // 编译错误！模糊调用
     }
 }`}
-                            </SyntaxHighlighter>
+                            </ExpandableCode>
                         </div>
                         
                         <div>
                             <h4 className="font-semibold text-warning-content mb-2">2. 重写中的访问修饰符陷阱</h4>
-                            <SyntaxHighlighter 
-                                language="java" 
-                                style={oneDark}
-                                className="rounded-lg"
-                            >
+                            <ExpandableCode language="java">
 {`public class Parent {
     protected void method() { }
 }
@@ -246,16 +229,12 @@ public class Child extends Parent {
     // ✅ 正确：可以提高可见性
     public void method() { }
 }`}
-                            </SyntaxHighlighter>
+                            </ExpandableCode>
                         </div>
                         
                         <div>
                             <h4 className="font-semibold text-warning-content mb-2">3. 静态方法的"重写"陷阱</h4>
-                            <SyntaxHighlighter 
-                                language="java" 
-                                style={oneDark}
-                                className="rounded-lg"
-                            >
+                            <ExpandableCode language="java">
 {`public class Parent {
     public static void staticMethod() {
         System.out.println("Parent static");
@@ -272,7 +251,7 @@ public class Child extends Parent {
 // 测试
 Parent p = new Child();
 p.staticMethod(); // 输出: Parent static (编译时决定)`}
-                            </SyntaxHighlighter>
+                            </ExpandableCode>
                         </div>
                     </div>
                 </WarningCard>
