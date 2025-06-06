@@ -17,7 +17,7 @@ export default function BaseIndex() {
                         </p>
 
                         {/* 知识分类卡片区域 */}
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
                             {/* Java 分类卡片 */}
                             <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow cursor-pointer">
                                 <div className="card-body items-center text-center">
@@ -50,6 +50,22 @@ export default function BaseIndex() {
                                 </div>
                             </div>
 
+                            {/* 网络通信分类卡片 */}
+                            <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow cursor-pointer">
+                                <div className="card-body items-center text-center">
+                                    <div className="text-6xl mb-4">
+                                        <i className="fi fi-rr-globe flex"/>
+                                    </div>
+                                    <h2 className="card-title text-info text-2xl">网络通信</h2>
+                                    <p className="text-base-content/60 mb-4">
+                                        HTTP、HTTPS、WebSocket等
+                                    </p>
+                                    <div className="card-actions justify-end">
+                                        <Link to={"/knowledge/network"} className="btn btn-info">进入学习</Link>
+                                    </div>
+                                </div>
+                            </div>
+
                             {/* Go 分类卡片 */}
                             <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow cursor-pointer">
                                 <div className="card-body items-center text-center">
@@ -71,8 +87,8 @@ export default function BaseIndex() {
                         <div className="stats shadow mt-16 bg-base-100">
                             <div className="stat">
                                 <div className="stat-title">技术分类</div>
-                                <div className="stat-value text-primary">3</div>
-                                <div className="stat-desc">Java • 前端 • Go</div>
+                                <div className="stat-value text-primary">4</div>
+                                <div className="stat-desc">Java • 前端 • 网络 • Go</div>
                             </div>
 
                             <div className="stat">

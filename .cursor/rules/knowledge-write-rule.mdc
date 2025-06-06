@@ -14,6 +14,7 @@ alwaysApply: false
 - [warning_card.tsx](mdc:src/components/card/warning_card.tsx) [自带 Emoji]
 
 尽可能优先使用已有的模板，另外对于问题可以看问题框架 [knowledge_question_card.tsx](mdc:src/components/base/knowledge_question_card.tsx) 
+使用代码需要用 [expandable_code.tsx](mdc:src/components/base/expandable_code.tsx)
 
 以上的文件你都不可以修改，你只能基于上面内容进行调用。
 
@@ -25,9 +26,11 @@ alwaysApply: false
 - 代码高度控制【如果大于 300px 保持 300px】
 - 组件统一化
 
+现在你有一份已经写好的文件可以参考 [map-comparison.tsx](mdc:src/components/knowledge/java/basics/data/map-comparison.tsx) ，所以你写代码要参考已有的代码，不可以超出
+
 对于使用代码，统一使用 `oneDark` 主题。
 
-你可以参考现有文件如 [map-comparison.tsx](mdc:src/components/knowledge/java/basics/data/map-comparison.tsx) 等已有文件进行查看。
+这个是基础文件参考 [base_java.tsx](mdc:src/views/knowledge/java/base_java.tsx)，不需要 overview，基础菜单架构参考 [knowledge_side_menu.tsx](mdc:src/components/base/knowledge_side_menu.tsx)
 
 路由文件在 [route.tsx](mdc:src/route.tsx)。
 

@@ -5,60 +5,60 @@ import type { MenuItem } from "../../../components/base/knowledge_side_menu";
 // 前端知识点菜单
 const frontMenuItems: MenuItem[] = [
     {
-        id: "overview",
-        label: "前端概览",
-        path: "/knowledge/front",
-        icon: "fi fi-rr-apps",
-        description: "学习路径和知识体系"
-    },
-    {
-        id: "html-css",
-        label: "HTML & CSS",
-        path: "/knowledge/front/html-css",
-        icon: "fi fi-rr-browser",
-        description: "页面结构和样式"
-    },
-    {
-        id: "javascript",
+        id: "javascript-fundamentals",
         label: "JavaScript",
-        path: "/knowledge/front/javascript",
-        icon: "fi fi-brands-js",
-        description: "语言基础和ES6+"
+        path: "/knowledge/front",
+        icon: "fi fi-brands-node-js",
+        description: "JavaScript语言核心概念和面试要点"
     },
     {
-        id: "react",
+        id: "typescript-fundamentals",
+        label: "TypeScript",
+        path: "/knowledge/front/typescript",
+        icon: "fi fi-brands-typescript",
+        description: "TypeScript类型系统和进阶特性"
+    },
+    {
+        id: "css-fundamentals",
+        label: "CSS",
+        path: "/knowledge/front/css",
+        icon: "fi fi-rr-palette",
+        description: "CSS布局、选择器、动画等核心概念"
+    },
+    {
+        id: "html-fundamentals",
+        label: "HTML",
+        path: "/knowledge/front/html",
+        icon: "fi fi-rr-code",
+        description: "HTML语义化、表单、无障碍等知识点"
+    },
+    {
+        id: "react-fundamentals",
         label: "React",
         path: "/knowledge/front/react",
         icon: "fi fi-brands-react",
-        description: "组件、Hooks、状态管理"
+        description: "React Hooks、生命周期、状态管理等"
     },
     {
-        id: "vue",
+        id: "vue-fundamentals",
         label: "Vue",
         path: "/knowledge/front/vue",
-        icon: "fi fi-rr-angle-double-right",
-        description: "组件化和响应式系统"
+        icon: "fi fi-brands-vuejs",
+        description: "Vue组合式API、响应式原理等"
     },
     {
-        id: "typescript",
-        label: "TypeScript",
-        path: "/knowledge/front/typescript",
-        icon: "fi fi-rr-square-code",
-        description: "类型系统和接口"
+        id: "browser-fundamentals",
+        label: "浏览器原理",
+        path: "/knowledge/front/browser",
+        icon: "fi fi-rr-browser",
+        description: "渲染机制、事件循环、存储等"
     },
     {
-        id: "engineering",
-        label: "工程化",
+        id: "engineering-fundamentals",
+        label: "前端工程化",
         path: "/knowledge/front/engineering",
-        icon: "fi fi-rr-tools",
-        description: "构建工具和CI/CD"
-    },
-    {
-        id: "performance",
-        label: "性能优化",
-        path: "/knowledge/front/performance",
-        icon: "fi fi-rr-rocket",
-        description: "加载性能和运行性能"
+        icon: "fi fi-rr-settings",
+        description: "构建工具、模块化、性能优化等"
     }
 ];
 
