@@ -1,16 +1,11 @@
 import { QuestionCard } from "../../../../base/knowledge_question_card"
 import { WarningCard } from "../../../../card/warning_card"
+import { InfoCard } from "../../../../card/info_card"
+import { PrimaryCard } from "../../../../card/primary_card"
 
 /**
- * # 什么是面向对象编程
- * 面向对象编程（OOP）是一种编程范式，将数据和操作数据的方法封装在对象中。
- * 三大特性：
- * 1. 封装：将数据和方法包装在类中，隐藏内部实现细节
- * 2. 继承：子类可以继承父类的属性和方法，实现代码复用
- * 3. 多态：同一个接口可以有多种不同的实现方式
- * 优势：代码复用性高、可维护性强、结构清晰
- * 
- * @returns 
+ * # 面向对象编程(OOP)
+ * 核心：将数据和操作数据的方法封装在对象中
  */
 export function JavaBasicsWhatIsOOP({ id }: { id: string }) {
     return (
@@ -21,17 +16,96 @@ export function JavaBasicsWhatIsOOP({ id }: { id: string }) {
             content: "请解释面向对象编程的基本概念，以及封装、继承、多态的含义。",
             tags: ["面向对象", "基础概念", "封装", "继承", "多态"]
         }}>
-            <div className="space-y-2">
-                <p><strong>封装 (Encapsulation)：</strong> 将对象的属性（数据）和行为（方法）结合为一个独立的整体，并对对象的内部细节进行隐藏，只暴露必要的接口供外部访问。优点：提高安全性、简化编程、易于维护。应用：将<strong>User</strong>实体的属性（如`id`, `name`, `password`）声明为<strong>private</strong>，通过公有的<strong>getter</strong>和<strong>setter</strong>方法访问，可以在<strong>setter</strong>中加入数据校验逻辑。</p>
-                <p><strong>继承 (Inheritance)：</strong> 子类可以继承父类的属性和方法（非<strong>private</strong>的），实现代码复用，并可以在子类中扩展或重写父类的功能。优点：代码复用、层级清晰。缺点：高耦合，父类修改可能影响子类。应用：定义通用的<strong>BaseService</strong>处理公共业务逻辑，具体业务<strong>Service</strong>（如<strong>OrderService</strong>, <strong>ProductService</strong>）继承它。</p>
-                <p><strong>多态 (Polymorphism)：</strong> 同一个接口或父类，在不同的子类实例下可以有不同的实现和行为。主要通过方法重写（<strong>Override</strong>）和接口实现来实现。前提：继承、重写、向上转型。应用：定义<strong>Shape</strong>接口有`draw()`方法，<strong>Circle</strong>和<strong>Square</strong>类分别实现，`Shape shape = new Circle(); shape.draw();` 调用的是<strong>Circle</strong>的`draw()`。</p>
-                
-                <WarningCard title="易错点与深究">
-                    <ul className="text-sm space-y-1">
-                        <li><strong>多态的动态绑定：</strong> 编译时看左边（父类/接口引用），运行时看右边（实际对象类型）。方法调用是在运行时确定具体执行哪个子类的方法。</li>
-                        <li><strong>方法重写(<strong>Override</strong>) vs 方法重载(<strong>Overload</strong>)：</strong> 重写发生在子类和父类之间，方法签名必须相同；重载发生在同一个类中，方法名相同但参数列表不同。</li>
-                        <li><strong>抽象类 vs 接口：</strong> 抽象类可以有构造方法和普通成员变量，单继承；接口表示"can-do"能力，多实现。</li>
-                    </ul>
+            <div className="space-y-6">
+                {/* 三大特性 */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <PrimaryCard title="🔒 封装 (Encapsulation)">
+                        <div className="space-y-2 text-sm">
+                            <p><strong>核心：</strong>隐藏内部实现，提供公共接口</p>
+                            <p><strong>实现：</strong>private属性 + public方法</p>
+                            <p><strong>好处：</strong>安全性、可维护性</p>
+                        </div>
+                    </PrimaryCard>
+
+                    <PrimaryCard title="🧬 继承 (Inheritance)">
+                        <div className="space-y-2 text-sm">
+                            <p><strong>核心：</strong>子类获得父类的属性和方法</p>
+                            <p><strong>关键词：</strong>extends、super</p>
+                            <p><strong>好处：</strong>代码复用、层次清晰</p>
+                        </div>
+                    </PrimaryCard>
+
+                    <PrimaryCard title="🔄 多态 (Polymorphism)">
+                        <div className="space-y-2 text-sm">
+                            <p><strong>核心：</strong>同一接口，不同实现</p>
+                            <p><strong>前提：</strong>继承 + 重写 + 向上转型</p>
+                            <p><strong>体现：</strong>运行时确定具体方法</p>
+                        </div>
+                    </PrimaryCard>
+                </div>
+
+                {/* 对比表格 */}
+                <InfoCard title="特性对比表">
+                    <div className="overflow-x-auto">
+                        <table className="table table-zebra w-full text-sm">
+                            <thead>
+                                <tr>
+                                    <th>特性</th>
+                                    <th>目的</th>
+                                    <th>实现方式</th>
+                                    <th>关键字</th>
+                                    <th>易错点</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td className="font-semibold">封装</td>
+                                    <td>隐藏细节，保护数据</td>
+                                    <td>private + getter/setter</td>
+                                    <td>private, protected, public</td>
+                                    <td>忘记提供访问方法</td>
+                                </tr>
+                                <tr>
+                                    <td className="font-semibold">继承</td>
+                                    <td>代码复用，建立层次</td>
+                                    <td>class B extends A</td>
+                                    <td>extends, super</td>
+                                    <td>理解super()调用时机</td>
+                                </tr>
+                                <tr>
+                                    <td className="font-semibold">多态</td>
+                                    <td>接口统一，实现多样</td>
+                                    <td>方法重写 + 向上转型</td>
+                                    <td>@Override</td>
+                                    <td>编译时看左边，运行时看右边</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </InfoCard>
+
+                <WarningCard title="核心易错点">
+                    <div className="space-y-3 text-sm">
+                        <div>
+                            <h5 className="font-semibold text-error">❌ 多态的动态绑定误区</h5>
+                            <div className="bg-base-200 p-2 rounded mt-1">
+                                <code>Animal a = new Dog(); // 编译时看Animal，运行时执行Dog的方法</code>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h5 className="font-semibold text-error">❌ 重写 vs 重载混淆</h5>
+                            <ul className="list-disc list-inside space-y-1 ml-2">
+                                <li><strong>重写(Override)：</strong>子类重新实现父类方法，方法签名相同</li>
+                                <li><strong>重载(Overload)：</strong>同类中方法名相同，参数不同</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h5 className="font-semibold text-error">❌ 构造方法调用顺序</h5>
+                            <p className="ml-2">继承中：先父类构造方法，后子类构造方法</p>
+                        </div>
+                    </div>
                 </WarningCard>
             </div>
         </QuestionCard>

@@ -5,15 +5,15 @@ export function BaseKnowledge() {
 
     return (
         <div className="flex flex-col h-screen">
-            <header className="bg-base-200 p-4 shadow-sm">
+            <header className="bg-gradient-to-r from-primary to-primary/50 p-4 shadow-sm">
                 <div className="flex justify-between">
-                    <Link to={"/"} className="flex items-center gap-2 text-2xl hover:text-primary transition">
+                    <Link to={"/"} className="flex items-center gap-2 text-2xl text-primary-content hover:text-secondary-content transition">
                         <i className="fi fi-rr-book-bookmark flex" />
                         <span className="text-2xl font-bold">筱锋的知识库</span>
                     </Link>
                     <div className="flex gap-2">
                         <details className="dropdown">
-                            <summary className="btn btn-ghost btn-sm">
+                            <summary className="btn btn-ghost btn-sm hover:bg-primary border-0 transition-all">
                                 <i className="fi fi-br-background flex" />
                             </summary>
                             <ul className="menu dropdown-content bg-base-100 rounded-lg z-1 p-2 shadow-sm">
@@ -28,10 +28,10 @@ export function BaseKnowledge() {
                                 <li className="cursor-pointer hover:bg-base-200 rounded-md p-1" onClick={() => document.documentElement.setAttribute('data-theme', 'aqua')}>Aqua</li>
                             </ul>
                         </details>
-                        <button className="btn btn-ghost btn-sm transition-all" onClick={() => navigate("/")}>
+                        <button className="btn btn-ghost btn-sm hover:bg-primary border-0 transition-all" onClick={() => navigate("/")}>
                             <i className="fi fi-br-house-chimney flex" />
                         </button>
-                        <button className="btn btn-ghost btn-sm transition-all" onClick={() => navigate("https://github.com/xiao-lfeng")}>
+                        <button className="btn btn-ghost btn-sm hover:bg-primary border-0 transition-all" onClick={() => window.open("https://github.com/XiaoLFeng/interview-information", "_blank")}>
                             <i className="fi fi-brands-github flex" />
                         </button>
                     </div>
