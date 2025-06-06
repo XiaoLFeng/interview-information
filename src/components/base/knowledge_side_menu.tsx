@@ -91,6 +91,11 @@ export function SideMenu({
                         })}
                     </ul>
                 </div>
+
+                {/* 添加版权 */}
+                <div className="text-center text-xs text-base-content bg-base-200 rounded-md p-2">
+                    <p>Copyright &copy; 2025 <a href="https://www.x-lf.com" target="_blank" className="text-primary">筱锋</a> All Rights Reserved.</p>
+                </div>
             </div>
         </div>
     );

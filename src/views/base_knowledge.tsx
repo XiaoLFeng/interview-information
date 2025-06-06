@@ -13,25 +13,45 @@ export function BaseKnowledge() {
                     </Link>
                     <div className="flex gap-2">
                         <details className="dropdown">
-                            <summary className="btn btn-ghost btn-sm hover:bg-primary border-0 transition-all">
+                            <summary className="btn btn-ghost btn-sm hover:bg-primary border-0 transition-all tooltip tooltip-left" data-tip="切换主题" onMouseEnter={() => {
+                                const themeList = document.querySelector('#theme-list');
+                                if (themeList && themeList.parentElement) {
+                                    (themeList.parentElement as HTMLDetailsElement).open = true;
+                                }
+                            }} onMouseLeave={() => {
+                                const themeList = document.querySelector('#theme-list');
+                                if (themeList && themeList.parentElement) {
+                                    (themeList.parentElement as HTMLDetailsElement).open = false;
+                                }
+                            }} onClick={(e) => e.preventDefault()}>
                                 <i className="fi fi-br-background flex" />
                             </summary>
-                            <ul className="menu dropdown-content bg-base-100 rounded-lg z-1 p-2 shadow-sm">
-                                <li className="cursor-pointer hover:bg-base-200 rounded-md p-1" onClick={() => document.documentElement.setAttribute('data-theme', 'emerald')}>Emerald</li>
-                                <li className="cursor-pointer hover:bg-base-200 rounded-md p-1" onClick={() => document.documentElement.setAttribute('data-theme', 'light')}>Light</li>
-                                <li className="cursor-pointer hover:bg-base-200 rounded-md p-1" onClick={() => document.documentElement.setAttribute('data-theme', 'dark')}>Dark</li>
-                                <li className="cursor-pointer hover:bg-base-200 rounded-md p-1" onClick={() => document.documentElement.setAttribute('data-theme', 'cupcake')}>Cupcake</li>
-                                <li className="cursor-pointer hover:bg-base-200 rounded-md p-1" onClick={() => document.documentElement.setAttribute('data-theme', 'autumn')}>Autumn</li>
-                                <li className="cursor-pointer hover:bg-base-200 rounded-md p-1" onClick={() => document.documentElement.setAttribute('data-theme', 'business')}>Business</li>
-                                <li className="cursor-pointer hover:bg-base-200 rounded-md p-1" onClick={() => document.documentElement.setAttribute('data-theme', 'night')}>Night</li>
-                                <li className="cursor-pointer hover:bg-base-200 rounded-md p-1" onClick={() => document.documentElement.setAttribute('data-theme', 'forest')}>Forest</li>
-                                <li className="cursor-pointer hover:bg-base-200 rounded-md p-1" onClick={() => document.documentElement.setAttribute('data-theme', 'aqua')}>Aqua</li>
+                            <ul id="theme-list" className="menu dropdown-content bg-base-100 rounded-lg z-1 p-2 shadow-sm" onMouseEnter={() => {
+                                const themeList = document.querySelector('#theme-list');
+                                if (themeList && themeList.parentElement) {
+                                    (themeList.parentElement as HTMLDetailsElement).open = true;
+                                }
+                            }} onMouseLeave={() => {
+                                const themeList = document.querySelector('#theme-list');
+                                if (themeList && themeList.parentElement) {
+                                    (themeList.parentElement as HTMLDetailsElement).open = false;
+                                }
+                            }}>
+                                <li><span className="cursor-pointer select-none" onClick={() => document.documentElement.setAttribute('data-theme', 'emerald')}>Emerald</span></li>
+                                <li><span className="cursor-pointer select-none" onClick={() => document.documentElement.setAttribute('data-theme', 'light')}>Light</span></li>
+                                <li><span className="cursor-pointer select-none" onClick={() => document.documentElement.setAttribute('data-theme', 'dark')}>Dark</span></li>
+                                <li><span className="cursor-pointer select-none" onClick={() => document.documentElement.setAttribute('data-theme', 'cupcake')}>Cupcake</span></li>
+                                <li><span className="cursor-pointer select-none" onClick={() => document.documentElement.setAttribute('data-theme', 'autumn')}>Autumn</span></li>
+                                <li><span className="cursor-pointer select-none" onClick={() => document.documentElement.setAttribute('data-theme', 'business')}>Business</span></li>
+                                <li><span className="cursor-pointer select-none" onClick={() => document.documentElement.setAttribute('data-theme', 'night')}>Night</span></li>
+                                <li><span className="cursor-pointer select-none" onClick={() => document.documentElement.setAttribute('data-theme', 'forest')}>Forest</span></li>
+                                <li><span className="cursor-pointer select-none" onClick={() => document.documentElement.setAttribute('data-theme', 'aqua')}>Aqua</span></li>
                             </ul>
                         </details>
-                        <button className="btn btn-ghost btn-sm hover:bg-primary border-0 transition-all" onClick={() => navigate("/")}>
+                        <button className="btn btn-ghost btn-sm hover:bg-primary border-0 transition-all tooltip tooltip-left" data-tip="回到首页" onClick={() => navigate("/")}>
                             <i className="fi fi-br-house-chimney flex" />
                         </button>
-                        <button className="btn btn-ghost btn-sm hover:bg-primary border-0 transition-all" onClick={() => window.open("https://github.com/XiaoLFeng/interview-information", "_blank")}>
+                        <button className="btn btn-ghost btn-sm hover:bg-primary border-0 transition-all tooltip tooltip-left" data-tip="前往GitHub" onClick={() => window.open("https://github.com/XiaoLFeng/interview-information", "_blank")}>
                             <i className="fi fi-brands-github flex" />
                         </button>
                     </div>
