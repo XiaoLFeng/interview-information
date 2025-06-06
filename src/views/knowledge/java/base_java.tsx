@@ -5,12 +5,33 @@ import type { MenuItem } from "../../../components/base/knowledge_side_menu";
 // Java 知识点菜单
 const javaMenuItems: MenuItem[] = [
     {
-        id: "base",
+        id: "basics",
         label: "Java 基础",
         path: "/knowledge/java",
-        icon: "fi fi-rr-apps",
-        description: "Java 基础知识"
+        icon: "fi fi-rr-cube",
+        description: "Java 基础语法与核心概念"
     },
+    {
+        id: "springboot",
+        label: "SpringBoot",
+        path: "/knowledge/java/springboot",
+        icon: "fi fi-rr-leaf",
+        description: "SpringBoot 框架核心技术"
+    },
+    {
+        id: "redis",
+        label: "Redis",
+        path: "/knowledge/java/redis",
+        icon: "fi fi-rr-database",
+        description: "Redis 缓存技术与应用"
+    },
+    {
+        id: "mysql",
+        label: "MySQL",
+        path: "/knowledge/java/mysql",
+        icon: "fi fi-rr-data-transfer",
+        description: "MySQL 数据库核心技术"
+    }
 ];
 
 export function BaseJava() {

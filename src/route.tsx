@@ -3,6 +3,9 @@ import BaseIndex from "./views/base_index";
 import { BaseJava } from "./views/knowledge/java/base_java";
 import { BaseKnowledge } from "./views/base_knowledge";
 import { JavaBasics } from "./views/knowledge/java/data/java_basics";
+import { JavaSpringBoot } from "./views/knowledge/java/data/java_springboot";
+import { JavaRedis } from "./views/knowledge/java/data/java_redis";
+import { JavaMySQL } from "./views/knowledge/java/data/java_mysql";
 import { BaseFront } from "./views/knowledge/front/base_front";
 
 export const router = createBrowserRouter([
@@ -21,6 +24,18 @@ export const router = createBrowserRouter([
                     {
                         path: "",
                         Component: JavaBasics
+                    },
+                    {
+                        path: "springboot",
+                        Component: JavaSpringBoot
+                    },
+                    {
+                        path: "redis",
+                        Component: JavaRedis
+                    },
+                    {
+                        path: "mysql",
+                        Component: JavaMySQL
                     }
                 ]
             },
