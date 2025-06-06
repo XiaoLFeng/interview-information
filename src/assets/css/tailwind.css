@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-    themes: emerald --default;
+    themes: all;
 }
 
 /* 自定义滚动条样式 */

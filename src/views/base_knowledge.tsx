@@ -12,6 +12,22 @@ export function BaseKnowledge() {
                         <span className="text-2xl font-bold">筱锋的知识库</span>
                     </Link>
                     <div className="flex gap-2">
+                        <details className="dropdown">
+                            <summary className="btn btn-ghost btn-sm">
+                                <i className="fi fi-br-background flex" />
+                            </summary>
+                            <ul className="menu dropdown-content bg-base-100 rounded-lg z-1 p-2 shadow-sm">
+                                <li className="cursor-pointer hover:bg-base-200 rounded-md p-1" onClick={() => document.documentElement.setAttribute('data-theme', 'emerald')}>Emerald</li>
+                                <li className="cursor-pointer hover:bg-base-200 rounded-md p-1" onClick={() => document.documentElement.setAttribute('data-theme', 'light')}>Light</li>
+                                <li className="cursor-pointer hover:bg-base-200 rounded-md p-1" onClick={() => document.documentElement.setAttribute('data-theme', 'dark')}>Dark</li>
+                                <li className="cursor-pointer hover:bg-base-200 rounded-md p-1" onClick={() => document.documentElement.setAttribute('data-theme', 'cupcake')}>Cupcake</li>
+                                <li className="cursor-pointer hover:bg-base-200 rounded-md p-1" onClick={() => document.documentElement.setAttribute('data-theme', 'autumn')}>Autumn</li>
+                                <li className="cursor-pointer hover:bg-base-200 rounded-md p-1" onClick={() => document.documentElement.setAttribute('data-theme', 'business')}>Business</li>
+                                <li className="cursor-pointer hover:bg-base-200 rounded-md p-1" onClick={() => document.documentElement.setAttribute('data-theme', 'night')}>Night</li>
+                                <li className="cursor-pointer hover:bg-base-200 rounded-md p-1" onClick={() => document.documentElement.setAttribute('data-theme', 'forest')}>Forest</li>
+                                <li className="cursor-pointer hover:bg-base-200 rounded-md p-1" onClick={() => document.documentElement.setAttribute('data-theme', 'aqua')}>Aqua</li>
+                            </ul>
+                        </details>
                         <button className="btn btn-ghost btn-sm transition-all" onClick={() => navigate("/")}>
                             <i className="fi fi-br-house-chimney flex" />
                         </button>
