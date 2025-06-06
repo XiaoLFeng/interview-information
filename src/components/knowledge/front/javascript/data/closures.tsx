@@ -3,9 +3,10 @@ import { ExpandableCode } from "../../../../base/expandable_code"
 import { InfoCard } from "../../../../card/info_card"
 import { WarningCard } from "../../../../card/warning_card"
 import { SuccessCard } from "../../../../card/success_card"
+import { SecondaryCard } from "../../../../card/secondary_card"
 
 /**
- * # 闭包：概念、应用与内存管理
+ * # JavaScript 闭包机制详解
  */
 export function FrontJavaScriptClosures({ id }: { id: string }) {
     return (
@@ -13,366 +14,378 @@ export function FrontJavaScriptClosures({ id }: { id: string }) {
             id,
             title: "闭包：概念、应用与内存管理",
             category: "闭包机制",
-            content: "深入理解 JavaScript 闭包的概念、形成条件、实际应用场景，以及闭包可能带来的内存泄漏问题和解决方案。",
-            tags: ["闭包", "词法作用域", "内存管理", "模块模式", "柯里化"]
+            content: "面试问题：什么是闭包？闭包的应用场景有哪些？如何避免闭包导致的内存泄漏？",
+            tags: ["闭包", "词法作用域", "内存管理", "模块模式", "柯里化", "面试"]
         }}>
             <div className="space-y-6">
-                {/* 闭包核心概念 */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <InfoCard title="闭包定义">
-                        <div className="space-y-2 text-sm">
-                            <p><strong>概念：</strong>函数能够访问其词法作用域</p>
-                            <p><strong>条件：</strong>内部函数引用外部变量</p>
-                            <p><strong>特点：</strong>变量持久化保存</p>
-                            <div className="badge badge-info">词法作用域</div>
-                        </div>
-                    </InfoCard>
-
-                    <SuccessCard title="闭包用途">
-                        <div className="space-y-2 text-sm">
-                            <p><strong>数据封装：</strong>创建私有变量</p>
-                            <p><strong>模块模式：</strong>创建独立模块</p>
-                            <p><strong>函数工厂：</strong>动态创建函数</p>
-                            <div className="badge badge-success">设计模式</div>
-                        </div>
-                    </SuccessCard>
-                </div>
-
-                {/* 基础闭包示例 */}
-                <InfoCard title="闭包的基本形式">
-                    <ExpandableCode language="javascript">
-{`// 最简单的闭包示例
-function outerFunction(x) {
-  // 外部函数的变量
-  var outerVariable = x;
-  
-  // 内部函数（闭包）
-  function innerFunction(y) {
-    // 内部函数访问外部函数的变量
-    console.log(outerVariable + y);
-  }
-  
-  return innerFunction;
-}
-
-// 创建闭包
-var closure = outerFunction(10);
-closure(5); // 15
-
-// 即使外部函数执行完毕，闭包仍能访问outerVariable
-var anotherClosure = outerFunction(20);
-anotherClosure(5); // 25
-
-// 每个闭包都有自己独立的词法环境
-closure(5); // 15 (仍然是10+5)`}
-                    </ExpandableCode>
-                </InfoCard>
-
-                {/* 计数器示例 */}
-                <SuccessCard title="经典应用：计数器">
-                    <ExpandableCode language="javascript">
-{`// 使用闭包创建私有变量
-function createCounter() {
-  let count = 0; // 私有变量，外部无法直接访问
-  
-  return {
-    increment: function() {
-      count++;
-      return count;
-    },
-    decrement: function() {
-      count--;
-      return count;
-    },
-    getCount: function() {
-      return count;
-    }
-  };
-}
-
-const counter1 = createCounter();
-const counter2 = createCounter();
-
-console.log(counter1.increment()); // 1
-console.log(counter1.increment()); // 2
-console.log(counter2.increment()); // 1 (独立的计数器)
-
-// 无法直接访问count
-console.log(counter1.count); // undefined
-// console.log(count); // ReferenceError
-
-// 更高级的计数器
-function createAdvancedCounter(initialValue = 0, step = 1) {
-  let count = initialValue;
-  
-  return {
-    next: () => count += step,
-    prev: () => count -= step,
-    reset: () => count = initialValue,
-    value: () => count
-  };
-}`}
-                    </ExpandableCode>
+                <SuccessCard title="核心解答">
+                    <p><strong>闭包</strong> 是函数能够访问其<strong>词法作用域</strong>中变量的特性，即使外部函数已执行完毕。形成条件：内部函数引用外部变量。用途：数据封装、模块模式、函数工厂、事件处理。注意内存管理。</p>
                 </SuccessCard>
 
-                {/* 模块模式 */}
-                <InfoCard title="模块模式 (Module Pattern)">
-                    <ExpandableCode language="javascript">
-{`// IIFE + 闭包实现模块模式
-const UserModule = (function() {
-  // 私有变量和方法
-  let users = [];
-  let currentId = 1;
-  
-  function generateId() {
-    return currentId++;
-  }
-  
-  function validateUser(user) {
-    return user && user.name && user.email;
-  }
-  
-  // 公共API
-  return {
-    addUser: function(name, email) {
-      if (validateUser({name, email})) {
-        const user = {
-          id: generateId(),
-          name: name,
-          email: email,
-          createdAt: new Date()
-        };
-        users.push(user);
-        return user;
-      }
-      throw new Error('Invalid user data');
-    },
+                <SecondaryCard title="🎯 闭包的本质理解">
+                    <div className="mb-4">
+                        <h5 className="font-semibold mb-2">词法作用域 + 函数是一等公民 = 闭包</h5>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                            <div className="border border-info/20 rounded p-3">
+                                <h6 className="font-semibold text-info">词法作用域</h6>
+                                <p>函数定义时确定作用域链，而非执行时</p>
+                            </div>
+                            <div className="border border-success/20 rounded p-3">
+                                <h6 className="font-semibold text-success">一等公民</h6>
+                                <p>函数可以作为值传递、返回、赋值</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <ExpandableCode language="javascript" maxHeight={150}>
+{`// 闭包的形成过程
+function createClosure(x) {
+    // 1. 外部函数的执行上下文
+    const outerVar = x;
     
-    getUser: function(id) {
-      return users.find(user => user.id === id);
-    },
-    
-    getAllUsers: function() {
-      return [...users]; // 返回副本，防止外部修改
-    },
-    
-    getUserCount: function() {
-      return users.length;
+    // 2. 内部函数定义时，捕获外部变量
+    function innerFunction(y) {
+        return outerVar + y;  // 引用外部变量，形成闭包
     }
-  };
-})();
+    
+    // 3. 返回内部函数（带着外部变量的引用）
+    return innerFunction;
+}
 
-// 使用模块
-UserModule.addUser("Alice", "alice@example.com");
-UserModule.addUser("Bob", "bob@example.com");
-console.log(UserModule.getAllUsers());
-console.log(UserModule.getUserCount()); // 2
+// 4. 外部函数执行完毕，但变量仍被闭包保持
+const closure = createClosure(10);
+console.log(closure(5));  // 15
 
-// 私有变量无法直接访问
-// console.log(UserModule.users); // undefined`}
+// 每次调用 createClosure 都创建新的词法环境
+const closure2 = createClosure(20);
+console.log(closure2(5)); // 25
+console.log(closure(5));  // 15 (独立环境)`}
                     </ExpandableCode>
-                </InfoCard>
+                </SecondaryCard>
 
-                {/* 函数工厂 */}
-                <SuccessCard title="函数工厂与柯里化">
-                    <ExpandableCode language="javascript">
-{`// 函数工厂 - 动态创建具有特定行为的函数
-function createValidator(rules) {
-  return function(value) {
-    return rules.every(rule => rule(value));
-  };
-}
-
-// 创建不同的验证器
-const emailValidator = createValidator([
-  value => typeof value === 'string',
-  value => value.includes('@'),
-  value => value.length > 5
-]);
-
-const passwordValidator = createValidator([
-  value => typeof value === 'string',
-  value => value.length >= 8,
-  value => /[A-Z]/.test(value),
-  value => /[0-9]/.test(value)
-]);
-
-console.log(emailValidator("test@example.com")); // true
-console.log(passwordValidator("Password123")); // true
-
-// 柯里化 (Currying)
-function curry(fn) {
-  return function curried(...args) {
-    if (args.length >= fn.length) {
-      return fn.apply(this, args);
-    } else {
-      return function(...nextArgs) {
-        return curried.apply(this, args.concat(nextArgs));
-      };
-    }
-  };
-}
-
-// 原函数
-function add(a, b, c) {
-  return a + b + c;
-}
-
-// 柯里化后的函数
-const curriedAdd = curry(add);
-
-console.log(curriedAdd(1)(2)(3)); // 6
-console.log(curriedAdd(1, 2)(3)); // 6
-console.log(curriedAdd(1)(2, 3)); // 6
-
-// 偏函数应用
-const add5 = curriedAdd(5);
-console.log(add5(2)(3)); // 10`}
-                    </ExpandableCode>
-                </SuccessCard>
-
-                {/* 常见陷阱 */}
-                <WarningCard title="常见陷阱与解决方案">
+                <WarningCard title="面试经典陷阱">
                     <div className="space-y-4">
                         <div>
-                            <h5 className="font-semibold text-warning">❌ 循环中的闭包陷阱</h5>
-                            <ExpandableCode language="javascript">
-{`// 问题：所有闭包共享同一个变量
+                            <h5 className="font-semibold">1. 循环中的闭包问题（必考）</h5>
+                            <ExpandableCode language="javascript" maxHeight={180}>
+{`// 经典错误：为什么都输出 3？
 for (var i = 0; i < 3; i++) {
-  setTimeout(function() {
-    console.log(i); // 输出 3, 3, 3
-  }, 1000);
-}
-
-// 解决方案1：使用IIFE创建独立作用域
-for (var i = 0; i < 3; i++) {
-  (function(index) {
     setTimeout(function() {
-      console.log(index); // 输出 0, 1, 2
-    }, 1000);
-  })(i);
+        console.log(i);  // 输出: 3, 3, 3
+    }, 100);
 }
 
-// 解决方案2：使用let创建块级作用域
+// 原因分析：
+// 1. var 是函数作用域，循环结束后 i = 3
+// 2. setTimeout 的回调函数形成闭包，引用同一个 i
+// 3. 异步执行时，i 已经是 3
+
+// 解决方案1：使用 let（块级作用域）
 for (let i = 0; i < 3; i++) {
-  setTimeout(function() {
-    console.log(i); // 输出 0, 1, 2
-  }, 1000);
+    setTimeout(function() {
+        console.log(i);  // 输出: 0, 1, 2
+    }, 100);
 }
 
-// 解决方案3：使用bind
+// 解决方案2：立即执行函数（IIFE）
 for (var i = 0; i < 3; i++) {
-  setTimeout(function(index) {
-    console.log(index); // 输出 0, 1, 2
-  }.bind(null, i), 1000);
+    (function(j) {
+        setTimeout(function() {
+            console.log(j);  // 输出: 0, 1, 2
+        }, 100);
+    })(i);
+}
+
+// 解决方案3：函数工厂
+function createLogger(index) {
+    return function() {
+        console.log(index);
+    };
+}
+
+for (var i = 0; i < 3; i++) {
+    setTimeout(createLogger(i), 100);  // 输出: 0, 1, 2
 }`}
                             </ExpandableCode>
                         </div>
-                        
+
                         <div>
-                            <h5 className="font-semibold text-warning">⚠️ 内存泄漏风险</h5>
-                            <ExpandableCode language="javascript">
-{`// 可能导致内存泄漏的闭包
-function createHandler() {
-  var largeData = new Array(1000000).fill('data'); // 大量数据
-  
-  return function() {
-    // 即使不使用largeData，它也会被保留在内存中
-    console.log('Handler called');
-  };
+                            <h5 className="font-semibold">2. this 在闭包中的表现</h5>
+                            <ExpandableCode language="javascript" maxHeight={150}>
+{`const obj = {
+    name: "对象",
+    
+    method1: function() {
+        console.log(this.name);  // "对象"
+        
+        // 普通函数：this 丢失
+        function inner() {
+            console.log(this.name);  // undefined
+        }
+        inner();
+        
+        // 解决方案1：保存 this
+        const self = this;
+        function innerWithSelf() {
+            console.log(self.name);  // "对象"
+        }
+        innerWithSelf();
+        
+        // 解决方案2：箭头函数
+        const innerArrow = () => {
+            console.log(this.name);  // "对象"
+        };
+        innerArrow();
+    }
+};
+
+// 面试追问：为什么箭头函数没有 this 绑定？
+// 答：箭头函数继承外层作用域的 this，这本质上也是闭包的应用`}
+                            </ExpandableCode>
+                        </div>
+
+                        <div>
+                            <h5 className="font-semibold">3. 闭包与变量共享</h5>
+                            <ExpandableCode language="javascript" maxHeight={120}>
+{`function createFunctions() {
+    const result = [];
+    
+    // 错误方式：共享变量
+    for (var i = 0; i < 3; i++) {
+        result[i] = function() {
+            return i;  // 所有函数都引用同一个 i
+        };
+    }
+    
+    return result;
 }
 
-// 解决方案：明确释放不需要的引用
-function createHandlerFixed() {
-  var largeData = new Array(1000000).fill('data');
-  var importantData = largeData.slice(0, 10); // 只保留需要的数据
-  
-  largeData = null; // 手动释放大数据的引用
-  
-  return function() {
-    console.log('Handler called', importantData.length);
-  };
-}
+const fns = createFunctions();
+console.log(fns[0]());  // 3 (不是0)
+console.log(fns[1]());  // 3 (不是1)
+console.log(fns[2]());  // 3 (不是2)
 
-// DOM事件处理中的内存泄漏
-function attachListener() {
-  var element = document.getElementById('myButton');
-  var largeObject = {
-    data: new Array(1000000).fill('data')
-  };
-  
-  element.onclick = function() {
-    // largeObject会被保留，即使不再需要
-    console.log('Button clicked');
-  };
-  
-  // 解决方案：在适当时机清理
-  return function cleanup() {
-    element.onclick = null;
-    largeObject = null;
-  };
+// 正确方式：创建独立作用域
+function createFunctionsCorrect() {
+    const result = [];
+    
+    for (let i = 0; i < 3; i++) {  // 使用 let
+        result[i] = function() {
+            return i;  // 每个函数都有独立的 i
+        };
+    }
+    
+    return result;
 }`}
                             </ExpandableCode>
                         </div>
                     </div>
                 </WarningCard>
 
-                {/* 性能考虑 */}
-                <InfoCard title="性能优化建议">
-                    <div className="space-y-3">
+                <SecondaryCard title="💼 实际应用场景">
+                    <div className="space-y-4">
                         <div>
-                            <h5 className="font-semibold">📈 最佳实践</h5>
-                            <ul className="list-disc list-inside text-sm space-y-1 mt-2">
-                                <li>避免在闭包中保留不必要的大对象引用</li>
-                                <li>及时清理DOM事件监听器中的闭包</li>
-                                <li>使用WeakMap和WeakSet避免循环引用</li>
-                                <li>在不需要时手动设置变量为null</li>
-                            </ul>
-                        </div>
-                        
-                        <ExpandableCode language="javascript">
-{`// 使用WeakMap避免内存泄漏
-const elementData = new WeakMap();
-
-function setElementData(element, data) {
-  elementData.set(element, data);
-}
-
-function getElementData(element) {
-  return elementData.get(element);
-}
-
-// 当element被垃圾回收时，WeakMap中的数据也会自动清理
-
-// 优化的事件处理
-class EventManager {
-  constructor() {
-    this.listeners = new WeakMap();
-  }
-  
-  addListener(element, event, handler) {
-    if (!this.listeners.has(element)) {
-      this.listeners.set(element, new Map());
+                            <h5 className="font-semibold">1. 模块模式（数据封装）</h5>
+                            <ExpandableCode language="javascript" maxHeight={180}>
+{`// 经典模块模式：私有变量 + 公共接口
+const Counter = (function() {
+    // 私有变量，外部无法访问
+    let count = 0;
+    const listeners = [];
+    
+    // 私有方法
+    function notify(newValue) {
+        listeners.forEach(listener => listener(newValue));
     }
     
-    const elementListeners = this.listeners.get(element);
-    elementListeners.set(event, handler);
-    element.addEventListener(event, handler);
-  }
-  
-  removeListener(element, event) {
-    const elementListeners = this.listeners.get(element);
-    if (elementListeners) {
-      const handler = elementListeners.get(event);
-      if (handler) {
-        element.removeEventListener(event, handler);
-        elementListeners.delete(event);
-      }
-    }
-  }
-}`}
-                        </ExpandableCode>
+    // 返回公共接口
+    return {
+        increment() {
+            count++;
+            notify(count);
+            return count;
+        },
+        
+        decrement() {
+            count--;
+            notify(count);
+            return count;
+        },
+        
+        getValue() {
+            return count;
+        },
+        
+        addListener(callback) {
+            listeners.push(callback);
+        },
+        
+        reset() {
+            count = 0;
+            notify(count);
+        }
+    };
+})();
+
+// 使用
+Counter.addListener(value => console.log(\`计数器: \${value}\`));
+Counter.increment();  // 计数器: 1
+Counter.increment();  // 计数器: 2
+console.log(Counter.count);  // undefined (私有变量)`}
+                            </ExpandableCode>
+                        </div>
+
+                        <div>
+                            <h5 className="font-semibold">2. 函数柯里化</h5>
+                            <ExpandableCode language="javascript" maxHeight={150}>
+{`// 柯里化：将多参数函数转换为一系列单参数函数
+function curry(fn) {
+    return function curried(...args) {
+        if (args.length >= fn.length) {
+            return fn.apply(this, args);
+        } else {
+            return function(...nextArgs) {
+                return curried.apply(this, args.concat(nextArgs));
+            };
+        }
+    };
+}
+
+// 示例函数
+function add(a, b, c) {
+    return a + b + c;
+}
+
+const curriedAdd = curry(add);
+
+// 多种调用方式
+console.log(curriedAdd(1)(2)(3));       // 6
+console.log(curriedAdd(1, 2)(3));       // 6
+console.log(curriedAdd(1)(2, 3));       // 6
+
+// 实际应用：创建专用函数
+const add10 = curriedAdd(10);
+const add10and5 = add10(5);
+console.log(add10and5(3));               // 18`}
+                            </ExpandableCode>
+                        </div>
+
+                        <div>
+                            <h5 className="font-semibold">3. 防抖和节流</h5>
+                            <ExpandableCode language="javascript" maxHeight={150}>
+{`// 防抖：延迟执行，重复调用会重置延迟
+function debounce(func, delay) {
+    let timeoutId;
+    
+    return function(...args) {
+        // 清除之前的定时器
+        clearTimeout(timeoutId);
+        
+        // 设置新的定时器
+        timeoutId = setTimeout(() => {
+            func.apply(this, args);
+        }, delay);
+    };
+}
+
+// 节流：限制执行频率
+function throttle(func, limit) {
+    let inThrottle;
+    
+    return function(...args) {
+        if (!inThrottle) {
+            func.apply(this, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    };
+}
+
+// 应用示例
+const debouncedSearch = debounce(searchFunction, 300);
+const throttledScroll = throttle(handleScroll, 100);
+
+// 输入框搜索防抖
+input.addEventListener('input', debouncedSearch);
+// 滚动节流
+window.addEventListener('scroll', throttledScroll);`}
+                            </ExpandableCode>
+                        </div>
                     </div>
+                </SecondaryCard>
+
+                <WarningCard title="内存管理与性能">
+                    <div className="space-y-4">
+                        <div>
+                            <h5 className="font-semibold">闭包可能导致的内存泄漏</h5>
+                            <ExpandableCode language="javascript" maxHeight={150}>
+{`// 内存泄漏示例：循环引用
+function createHandler() {
+    const element = document.getElementById('button');
+    const data = new Array(1000000).fill('large data');
+    
+    // 问题：element 和闭包相互引用
+    element.onclick = function() {
+        console.log(data.length);  // 闭包引用 data
+        // element 也被闭包引用（通过外部变量）
+    };
+    
+    // 即使 createHandler 执行完，data 也不会被回收
+}
+
+// 解决方案1：断开引用
+function createHandlerFixed1() {
+    const element = document.getElementById('button');
+    const data = new Array(1000000).fill('large data');
+    
+    element.onclick = function() {
+        console.log(data.length);
+    };
+    
+    return function cleanup() {
+        element.onclick = null;  // 断开引用
+        element = null;
+        data = null;
+    };
+}
+
+// 解决方案2：WeakMap
+const elementData = new WeakMap();
+function createHandlerFixed2() {
+    const element = document.getElementById('button');
+    const data = new Array(1000000).fill('large data');
+    
+    elementData.set(element, data);
+    
+    element.onclick = function() {
+        const data = elementData.get(element);
+        console.log(data.length);
+    };
+}`}
+                            </ExpandableCode>
+                        </div>
+
+                        <div>
+                            <h5 className="font-semibold">性能优化建议</h5>
+                            <ul className="list-disc pl-4 space-y-1 text-sm">
+                                <li>避免在循环中创建闭包，考虑提取到外部</li>
+                                <li>及时清理不需要的闭包引用</li>
+                                <li>使用 WeakMap、WeakSet 避免内存泄漏</li>
+                                <li>监控内存使用情况，特别是长时间运行的应用</li>
+                            </ul>
+                        </div>
+                    </div>
+                </WarningCard>
+
+                <InfoCard title="面试高分答题策略">
+                    <ul className="list-disc pl-4 space-y-2">
+                        <li><strong>概念解释：</strong>从词法作用域角度解释闭包本质</li>
+                        <li><strong>经典问题：</strong>必须掌握循环+setTimeout的闭包陷阱</li>
+                        <li><strong>实际应用：</strong>模块模式、柯里化、防抖节流等常见场景</li>
+                        <li><strong>性能考虑：</strong>理解内存泄漏风险和解决方案</li>
+                        <li><strong>深入理解：</strong>能解释执行上下文、作用域链的关系</li>
+                        <li><strong>代码能力：</strong>能手写 curry、debounce、throttle 函数</li>
+                    </ul>
                 </InfoCard>
             </div>
         </QuestionCard>

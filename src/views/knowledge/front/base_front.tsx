@@ -29,21 +29,21 @@ const frontMenuItems: MenuItem[] = [
         id: "html-fundamentals",
         label: "HTML",
         path: "/knowledge/front/html",
-        icon: "fi fi-rr-code",
+        icon: "fi fi-br-code-simple",
         description: "HTML语义化、表单、无障碍等知识点"
     },
     {
         id: "react-fundamentals",
         label: "React",
         path: "/knowledge/front/react",
-        icon: "fi fi-brands-react",
+        icon: "fi fi-ss-react",
         description: "React Hooks、生命周期、状态管理等"
     },
     {
         id: "vue-fundamentals",
         label: "Vue",
         path: "/knowledge/front/vue",
-        icon: "fi fi-brands-vuejs",
+        icon: "fi fi-br-v",
         description: "Vue组合式API、响应式原理等"
     },
     {
@@ -63,6 +63,8 @@ const frontMenuItems: MenuItem[] = [
 ];
 
 export function BaseFront() {
+    document.title = "前端技术栈 - 筱锋的知识库";
+
     return (
         <div className="flex h-full">
             {/* 左侧菜单 - 固定不随滚动 */}

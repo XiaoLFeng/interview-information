@@ -9,270 +9,281 @@ interface Props {
     id: string;
 }
 
+/**
+ * 模块系统
+ * 
+ * 面试问题：TypeScript 如何处理模块？declare module 的作用？.d.ts 声明文件的工作原理？
+ * 
+ * 核心解答：TypeScript 基于 ES6 模块系统，支持静态导入和动态导入。声明文件（.d.ts）提供类型信息但不包含实现。declare module 用于为第三方库添加类型声明或扩展现有模块。
+ */
 export function FrontTypeScriptModules({ id }: Props) {
     return (
         <QuestionCard
             question={{
                 id,
-                title: "TypeScript 模块系统",
-                category: "TypeScript",
-                content: "TypeScript 的模块系统是什么？ES6 模块、CommonJS、命名空间的区别和使用场景？如何进行模块声明和类型导入导出？",
-                tags: ["TypeScript", "模块系统", "ES6模块", "CommonJS", "命名空间", "类型导入"]
+                title: "模块系统",
+                category: "模块系统",
+                content: "面试问题：TypeScript 如何处理模块？declare module 的作用？.d.ts 声明文件的工作原理？",
+                tags: ["TypeScript", "模块系统", "面试", "声明文件", "ES6模块"]
             }}
         >
             <div className="space-y-6">
-                <SuccessCard title="核心要点">
-                    <p>TypeScript 支持多种模块系统，包括 ES6 模块、CommonJS 和内部命名空间，提供了灵活的代码组织和类型管理能力。</p>
+                <SuccessCard title="核心解答">
+                    <p>TypeScript 基于 ES6 模块系统，支持<strong>静态导入</strong>和<strong>动态导入</strong>。声明文件（.d.ts）提供类型信息但不包含实现。<code>declare module</code> 用于为第三方库添加类型声明或扩展现有模块。</p>
                 </SuccessCard>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <InfoCard title="ES6 模块">
-                        <p>现代 JavaScript 标准模块系统，支持静态分析和树摇优化。</p>
-                    </InfoCard>
-                    <InfoCard title="命名空间">
-                        <p>TypeScript 内部模块系统，用于组织代码和避免全局污染。</p>
-                    </InfoCard>
-                </div>
-
-                <SecondaryCard title="ES6 模块导入导出">
-                    <ExpandableCode 
-                        language="typescript"
-                        maxHeight={350}
-                    >
-{`// 基本导出
+                <SecondaryCard title="📝 模块系统核心概念">
+                    <div className="space-y-4">
+                        <div>
+                            <h4 className="font-semibold mb-2">1. ES6 模块导入导出</h4>
+                            <ExpandableCode language="typescript" maxHeight={180}>
+{`// 导出方式
 export interface User {
     id: number;
     name: string;
-    email: string;
 }
 
-export class UserService {
-    getUser(id: number): User | null {
-        // 实现逻辑
-        return null;
-    }
-}
+export const API_URL = "https://api.example.com";
 
-export const API_BASE_URL = "https://api.example.com";
-
-export function formatUser(user: User): string {
-    return \`\${user.name} (\${user.email})\`;
+export function createUser(data: Partial<User>): User {
+    return { id: Date.now(), ...data } as User;
 }
 
 // 默认导出
-export default class DefaultUserService {
-    private users: User[] = [];
-    
-    addUser(user: User): void {
-        this.users.push(user);
+export default class UserService {
+    getUser(id: number): Promise<User> {
+        return fetch(\`\${API_URL}/users/\${id}\`).then(r => r.json());
     }
 }
 
 // 重新导出
-export { User as UserType } from './types';
-export * from './constants';
-export { default as Logger } from './logger';
+export { UserType } from './types/user';
+export * from './constants';`}
+                            </ExpandableCode>
+                        </div>
 
-// 导入使用
-import DefaultUserService from './user-service';
-import { User, UserService, API_BASE_URL } from './user-service';
-import * as UserModule from './user-service';
-
-// 类型导入（TypeScript 3.8+）
+                        <div>
+                            <h4 className="font-semibold mb-2">2. 类型导入 (Type-only Import)</h4>
+                            <ExpandableCode language="typescript" maxHeight={150}>
+{`// TypeScript 3.8+ 类型导入
 import type { User } from './types';
-import type { Logger } from './logger';
+import type { ApiResponse } from './api';
 
-// 混合导入
-import UserService, { type User, API_BASE_URL } from './user-service';`}
-                    </ExpandableCode>
-                </SecondaryCard>
+// 混合导入：值和类型
+import UserService, { type User, API_URL } from './user-service';
 
-                <SecondaryCard title="命名空间 (Namespace)">
-                    <ExpandableCode 
-                        language="typescript"
-                        maxHeight={300}
-                    >
-{`// 命名空间定义
-namespace Validation {
-    export interface StringValidator {
-        isValid(s: string): boolean;
-    }
+// 为什么需要 type 导入？
+// 1. 明确意图 - 表明只导入类型
+// 2. 打包优化 - 构建工具可以移除纯类型导入
+// 3. 避免循环依赖 - 类型导入不会产生运行时依赖`}
+                            </ExpandableCode>
+                        </div>
 
-    export class EmailValidator implements StringValidator {
-        isValid(email: string): boolean {
-            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        }
-    }
-
-    export class PhoneValidator implements StringValidator {
-        isValid(phone: string): boolean {
-            return /^\d{10,}$/.test(phone);
-        }
-    }
-
-    // 内部函数，不导出
-    function sanitize(input: string): string {
-        return input.trim().toLowerCase();
-    }
-}
-
-// 使用命名空间
-const emailValidator = new Validation.EmailValidator();
-const isValidEmail = emailValidator.isValid("test@example.com");
-
-// 嵌套命名空间
-namespace App {
-    export namespace Utils {
-        export function formatDate(date: Date): string {
-            return date.toISOString().split('T')[0];
-        }
-    }
-
-    export namespace API {
-        export const BASE_URL = "https://api.example.com";
-        
-        export interface Response<T> {
-            data: T;
-            status: number;
-        }
-    }
-}
-
-// 使用嵌套命名空间
-const formattedDate = App.Utils.formatDate(new Date());
-const response: App.API.Response<string> = {
-    data: "Hello",
-    status: 200
-};`}
-                    </ExpandableCode>
-                </SecondaryCard>
-
-                <SecondaryCard title="模块声明文件">
-                    <ExpandableCode 
-                        language="typescript"
-                        maxHeight={300}
-                    >
-{`// types.d.ts - 类型声明文件
-declare module "lodash" {
-    export function debounce<T extends (...args: any[]) => any>(
-        func: T,
-        wait: number
-    ): T;
-    
-    export function cloneDeep<T>(obj: T): T;
-}
-
-// 全局变量声明
-declare global {
-    interface Window {
-        myApp: {
-            version: string;
-            config: any;
-        };
-    }
-    
-    var MY_GLOBAL_CONSTANT: string;
-}
-
-// 模块扩展
-declare module "express" {
-    interface Request {
-        user?: {
-            id: number;
-            name: string;
-        };
-    }
-}
-
-// 自定义模块类型
-declare module "*.vue" {
-    import { ComponentOptions } from "vue";
-    const component: ComponentOptions;
-    export default component;
-}
-
-declare module "*.css" {
-    const classes: { [key: string]: string };
-    export default classes;
-}
-
-// 环境变量类型
-declare namespace NodeJS {
-    interface ProcessEnv {
-        NODE_ENV: "development" | "production" | "test";
-        DATABASE_URL: string;
-        API_KEY: string;
-    }
-}`}
-                    </ExpandableCode>
-                </SecondaryCard>
-
-                <SecondaryCard title="动态导入和代码分割">
-                    <ExpandableCode 
-                        language="typescript"
-                        maxHeight={300}
-                    >
-{`// 动态导入
+                        <div>
+                            <h4 className="font-semibold mb-2">3. 动态导入与代码分割</h4>
+                            <ExpandableCode language="typescript" maxHeight={150}>
+{`// 动态导入返回 Promise
 async function loadUserModule() {
     const { UserService } = await import('./user-service');
     return new UserService();
 }
 
 // 条件加载
-async function loadValidation(type: "email" | "phone") {
-    if (type === "email") {
-        const { EmailValidator } = await import('./email-validator');
+async function loadValidator(type: 'email' | 'phone') {
+    if (type === 'email') {
+        const { EmailValidator } = await import('./validators/email');
         return new EmailValidator();
-    } else {
-        const { PhoneValidator } = await import('./phone-validator');
-        return new PhoneValidator();
+    }
+    // ...
+}
+
+// React 懒加载组件
+const UserDashboard = lazy(() => import('./UserDashboard'));`}
+                            </ExpandableCode>
+                        </div>
+                    </div>
+                </SecondaryCard>
+
+                <InfoCard title="为什么需要模块系统">
+                    <ul className="list-disc pl-4 space-y-2">
+                        <li><strong>命名空间管理：</strong>避免全局变量冲突</li>
+                        <li><strong>依赖关系：</strong>明确模块间的依赖关系</li>
+                        <li><strong>代码分割：</strong>支持按需加载，优化性能</li>
+                        <li><strong>类型安全：</strong>跨模块的类型检查和推断</li>
+                    </ul>
+                </InfoCard>
+
+                <WarningCard title="面试常考难点">
+                    <div className="space-y-4">
+                        <div>
+                            <h5 className="font-semibold">1. 声明文件的作用和编写</h5>
+                            <ExpandableCode language="typescript" maxHeight={200}>
+{`// types/global.d.ts - 全局类型声明
+declare global {
+    interface Window {
+        gtag: (command: string, ...args: any[]) => void;
+        dataLayer: any[];
+    }
+    
+    // 扩展已有的全局变量
+    var MY_APP_VERSION: string;
+}
+
+// 为第三方库添加类型
+declare module "lodash" {
+    export function debounce<T extends (...args: any[]) => any>(
+        func: T,
+        wait: number
+    ): T;
+}
+
+// 模块扩展 - 为现有库添加新方法
+declare module "express-serve-static-core" {
+    interface Request {
+        user?: { id: string; role: string };
+    }
+}`}
+                            </ExpandableCode>
+                        </div>
+
+                        <div>
+                            <h5 className="font-semibold">2. 模块解析策略</h5>
+                            <ExpandableCode language="typescript" maxHeight={180}>
+{`// tsconfig.json 中的模块解析配置
+{
+    "compilerOptions": {
+        "moduleResolution": "node",     // Node.js 解析策略
+        "baseUrl": "./src",             // 基础路径
+        "paths": {                      // 路径映射
+            "@/*": ["*"],
+            "@components/*": ["components/*"],
+            "@utils/*": ["utils/*"]
+        }
     }
 }
 
-// 类型安全的动态导入
-interface ModuleWithDefault<T> {
-    default: T;
+// 使用路径映射
+import { Button } from '@components/ui';      // -> src/components/ui
+import { debounce } from '@utils/helpers';    // -> src/utils/helpers
+
+// 面试重点：解释 moduleResolution 的区别
+// "node" - 遵循 Node.js 解析规则
+// "classic" - TypeScript 旧版解析规则（不推荐）`}
+                            </ExpandableCode>
+                        </div>
+
+                        <div>
+                            <h5 className="font-semibold">3. 循环依赖问题</h5>
+                            <ExpandableCode language="typescript" maxHeight={150}>
+{`// ❌ 容易产生循环依赖
+// user.ts
+import { Post } from './post';
+export interface User {
+    posts: Post[];
 }
 
-async function loadDefaultExport<T>(
-    modulePath: string
-): Promise<T> {
-    const module = await import(modulePath) as ModuleWithDefault<T>;
-    return module.default;
+// post.ts  
+import { User } from './user';
+export interface Post {
+    author: User;
 }
 
-// React 组件懒加载
-import { lazy, Suspense } from 'react';
+// ✅ 解决方案：使用类型导入
+// post.ts
+import type { User } from './user';
+export interface Post {
+    author: User;
+}`}
+                            </ExpandableCode>
+                        </div>
+                    </div>
+                </WarningCard>
 
-const LazyComponent = lazy(() => import('./components/HeavyComponent'));
-
-function App() {
-    return (
-        <Suspense fallback={<div>Loading...</div>}>
-            <LazyComponent />
-        </Suspense>
-    );
+                <SecondaryCard title="💡 面试实战技巧">
+                    <div className="space-y-4">
+                        <div>
+                            <h5 className="font-semibold">设计一个类型安全的插件系统</h5>
+                            <ExpandableCode language="typescript" maxHeight={200}>
+{`// 插件接口定义
+interface Plugin<T = any> {
+    name: string;
+    version: string;
+    install(app: App): void;
+    config?: T;
 }
 
-// Webpack 魔法注释
-const UserDashboard = lazy(() => 
-    import(
-        /* webpackChunkName: "user-dashboard" */
-        /* webpackPreload: true */
-        './components/UserDashboard'
-    )
-);`}
-                    </ExpandableCode>
+// 插件管理器
+class PluginManager {
+    private plugins = new Map<string, Plugin>();
+    
+    register<T>(plugin: Plugin<T>): void {
+        this.plugins.set(plugin.name, plugin);
+    }
+    
+    async loadPlugin(name: string): Promise<void> {
+        // 动态导入插件
+        const module = await import(\`./plugins/\${name}\`);
+        const plugin = module.default as Plugin;
+        this.register(plugin);
+    }
+}
+
+// 插件模块声明
+declare module './plugins/*' {
+    const plugin: Plugin;
+    export default plugin;
+}`}
+                            </ExpandableCode>
+                        </div>
+
+                        <div>
+                            <h5 className="font-semibold">环境变量和配置的类型安全</h5>
+                            <ExpandableCode language="typescript" maxHeight={150}>
+{`// env.d.ts - 环境变量类型声明
+declare namespace NodeJS {
+    interface ProcessEnv {
+        NODE_ENV: 'development' | 'production' | 'test';
+        DATABASE_URL: string;
+        JWT_SECRET: string;
+        PORT?: string;
+    }
+}
+
+// config.ts - 配置文件
+interface Config {
+    port: number;
+    database: {
+        url: string;
+    };
+    jwt: {
+        secret: string;
+        expiresIn: string;
+    };
+}
+
+export const config: Config = {
+    port: parseInt(process.env.PORT || '3000'),
+    database: {
+        url: process.env.DATABASE_URL,  // 类型安全，必须存在
+    },
+    jwt: {
+        secret: process.env.JWT_SECRET,
+        expiresIn: '7d'
+    }
+};`}
+                            </ExpandableCode>
+                        </div>
+                    </div>
                 </SecondaryCard>
 
-                <WarningCard title="模块系统注意事项">
+                <InfoCard title="面试加分点">
                     <ul className="list-disc pl-4 space-y-2">
-                        <li><strong>循环依赖：</strong>避免模块之间的循环依赖，可能导致运行时错误</li>
-                        <li><strong>类型导入：</strong>优先使用 type 导入，减少运行时开销</li>
-                        <li><strong>命名空间 vs 模块：</strong>优先使用 ES6 模块，命名空间主要用于类型组织</li>
-                        <li><strong>声明合并：</strong>注意命名空间和接口的声明合并规则</li>
+                        <li><strong>打包工具集成：</strong>了解 TypeScript 与 Webpack、Vite 的集成</li>
+                        <li><strong>声明文件发布：</strong>为开源库编写和发布类型声明</li>
+                        <li><strong>monorepo 管理：</strong>在 monorepo 中管理 TypeScript 模块</li>
+                        <li><strong>性能优化：</strong>理解模块解析对编译性能的影响</li>
                     </ul>
-                </WarningCard>
+                </InfoCard>
             </div>
         </QuestionCard>
     );

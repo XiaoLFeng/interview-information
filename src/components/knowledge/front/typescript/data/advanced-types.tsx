@@ -9,244 +9,198 @@ interface Props {
     id: string;
 }
 
+/**
+ * 高级类型系统
+ * 
+ * 面试问题：联合类型、交叉类型、条件类型、映射类型的区别和应用场景？如何解决复杂的类型推导问题？
+ * 
+ * 核心解答：高级类型是 TypeScript 的核心特性：联合类型表示"或"关系，交叉类型表示"与"关系，条件类型实现类型分支逻辑，映射类型用于类型转换。掌握这四种类型是高级 TS 开发的基础。
+ * 
+ * 四种高级类型对比：
+ * 
+ * 联合类型 (Union Types)：表示"或"的关系
+ */
 export function FrontTypeScriptAdvancedTypes({ id }: Props) {
     return (
         <QuestionCard
             question={{
                 id,
-                title: "TypeScript 高级类型系统",
-                category: "TypeScript",
-                content: "TypeScript 的高级类型有哪些？联合类型、交叉类型、条件类型、映射类型的使用场景和实现原理是什么？",
-                tags: ["TypeScript", "高级类型", "联合类型", "交叉类型", "条件类型", "映射类型"]
+                title: "高级类型系统",
+                category: "高级类型",
+                content: "面试问题：联合类型、交叉类型、条件类型、映射类型的区别和应用场景？如何解决复杂的类型推导问题？",
+                tags: ["TypeScript", "高级类型", "面试", "联合类型", "条件类型", "映射类型"]
             }}
         >
             <div className="space-y-6">
-                <SuccessCard title="核心要点">
-                    <p>TypeScript 高级类型系统包括联合类型、交叉类型、条件类型、映射类型等，提供了强大的类型操作和推导能力，是构建复杂类型系统的基础。</p>
+                <SuccessCard title="核心解答">
+                    <p>高级类型是 TypeScript 的核心特性：<strong>联合类型</strong>表示"或"关系，<strong>交叉类型</strong>表示"与"关系，<strong>条件类型</strong>实现类型分支逻辑，<strong>映射类型</strong>用于类型转换。掌握这四种类型是高级 TS 开发的基础。</p>
                 </SuccessCard>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <InfoCard title="联合类型 (Union Types)">
-                        <p>使用 | 操作符组合多个类型，表示值可以是其中任意一种类型。提供类型的"或"逻辑。</p>
-                    </InfoCard>
-                    <InfoCard title="交叉类型 (Intersection Types)">
-                        <p>使用 & 操作符组合多个类型，表示值必须同时满足所有类型。提供类型的"与"逻辑。</p>
-                    </InfoCard>
-                </div>
+                <SecondaryCard title="📝 四种高级类型对比">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <h4 className="font-semibold mb-2">联合类型 (Union Types)</h4>
+                            <ExpandableCode language="typescript" maxHeight={120}>
+{`// 表示"或"的关系
+type Status = "loading" | "success" | "error";
 
-                <SecondaryCard title="联合类型 (Union Types)">
-                    <div className="space-y-4">
-                        <p className="text-sm">联合类型允许一个值是几种类型之一，TypeScript 会推断出联合类型的共同成员。</p>
-                        
-                        <ExpandableCode 
-                            language="typescript"
-                            maxHeight={300}
-                        >
-{`// 基本联合类型
-type StringOrNumber = string | number;
-let value: StringOrNumber = "hello";
-value = 42; // 有效
-
-// 联合类型的类型保护
-function printId(id: string | number) {
-    if (typeof id === "string") {
-        // 在这个分支中，id 被推断为 string
-        console.log(id.toUpperCase());
-    } else {
-        // 在这个分支中，id 被推断为 number
-        console.log(id.toFixed(2));
-    }
-}
-
-// 字面量联合类型
-type Theme = "light" | "dark" | "auto";
-type Status = "pending" | "success" | "error";
-
-function setTheme(theme: Theme) {
-    // theme 只能是指定的三个值之一
-}
-
-// 判别联合类型
-interface Loading {
-    state: "loading";
-}
-
-interface Success {
-    state: "success";
-    data: any;
-}
-
-interface Error {
-    state: "error";
-    error: string;
-}
-
-type AsyncState = Loading | Success | Error;
-
-function handleState(state: AsyncState) {
-    switch (state.state) {
-        case "loading":
-            break;
-        case "success":
-            console.log(state.data);
-            break;
-        case "error":
-            console.log(state.error);
-            break;
+function handleResponse(status: Status) {
+    if (status === "success") {
+        // 类型收窄为 "success"
     }
 }`}
-                        </ExpandableCode>
-                    </div>
-                </SecondaryCard>
+                            </ExpandableCode>
+                        </div>
 
-                <SecondaryCard title="交叉类型 (Intersection Types)">
-                    <div className="space-y-4">
-                        <p className="text-sm">交叉类型将多个类型合并为一个类型，新类型包含所有类型的特性。</p>
-                        
-                        <ExpandableCode 
-                            language="typescript"
-                            maxHeight={300}
-                        >
-{`// 基本交叉类型
-interface Person {
-    name: string;
-    age: number;
-}
+                        <div>
+                            <h4 className="font-semibold mb-2">交叉类型 (Intersection)</h4>
+                            <ExpandableCode language="typescript" maxHeight={120}>
+{`// 表示"与"的关系，合并所有属性
+interface User { name: string; }
+interface Admin { role: string; }
 
-interface Worker {
-    company: string;
-    position: string;
-}
+type AdminUser = User & Admin;
+// { name: string; role: string; }`}
+                            </ExpandableCode>
+                        </div>
 
-type Employee = Person & Worker;
+                        <div>
+                            <h4 className="font-semibold mb-2">条件类型 (Conditional)</h4>
+                            <ExpandableCode language="typescript" maxHeight={120}>
+{`// 根据条件选择类型
+type ApiResponse<T> = T extends string 
+    ? { message: T } 
+    : { data: T };
 
-const employee: Employee = {
-    name: "Alice",
-    age: 30,
-    company: "Tech Corp",
-    position: "Developer"
-    // 必须包含所有属性
-};
+type StringResponse = ApiResponse<string>;
+// { message: string }`}
+                            </ExpandableCode>
+                        </div>
 
-// Mixin 模式
-interface Timestamped {
-    timestamp: Date;
-}
-
-interface Tagged {
-    tag: string;
-}
-
-function taggedTimestamp<T>(obj: T): T & Timestamped & Tagged {
-    return {
-        ...obj,
-        timestamp: new Date(),
-        tag: "auto-generated"
-    };
-}`}
-                        </ExpandableCode>
-                    </div>
-                </SecondaryCard>
-
-                <SecondaryCard title="条件类型 (Conditional Types)">
-                    <div className="space-y-4">
-                        <p className="text-sm">条件类型根据类型关系选择不同的类型，语法类似三元运算符。</p>
-                        
-                        <ExpandableCode 
-                            language="typescript"
-                            maxHeight={300}
-                        >
-{`// 基本条件类型语法
-type IsString<T> = T extends string ? true : false;
-
-type Test1 = IsString<string>;  // true
-type Test2 = IsString<number>;  // false
-
-// 条件类型的分布特性
-type ToArray<T> = T extends any ? T[] : never;
-type ArrayTypes = ToArray<string | number>; // string[] | number[]
-
-// 提取函数返回类型
-type ReturnType<T> = T extends (...args: any[]) => infer R ? R : any;
-
-type FuncReturnType = ReturnType<() => string>; // string
-
-// 复杂条件类型
-type NonNullable<T> = T extends null | undefined ? never : T;
-
-type CleanType = NonNullable<string | null | undefined>; // string
-
-// 嵌套条件类型示例
-type Flatten<T> = T extends (infer U)[] 
-    ? U extends (infer V)[] 
-        ? V[] 
-        : U[] 
-    : T[];`}
-                        </ExpandableCode>
-                    </div>
-                </SecondaryCard>
-
-                <SecondaryCard title="映射类型 (Mapped Types)">
-                    <div className="space-y-4">
-                        <p className="text-sm">映射类型可以基于旧类型创建新类型，通过遍历键来转换类型。</p>
-                        
-                        <ExpandableCode 
-                            language="typescript"
-                            maxHeight={300}
-                        >
-{`// 基本映射类型
-type Readonly<T> = {
-    readonly [P in keyof T]: T[P];
-};
-
+                        <div>
+                            <h4 className="font-semibold mb-2">映射类型 (Mapped)</h4>
+                            <ExpandableCode language="typescript" maxHeight={120}>
+{`// 转换已有类型的属性
 type Partial<T> = {
     [P in keyof T]?: T[P];
 };
 
-interface User {
-    id: number;
-    name: string;
-    email: string;
-}
-
-type ReadonlyUser = Readonly<User>;
 type PartialUser = Partial<User>;
-
-// 高级映射类型
-type Nullable<T> = {
-    [P in keyof T]: T[P] | null;
-};
-
-type Keys = "option1" | "option2" | "option3";
-type Flags = { [K in Keys]: boolean };
-
-// 映射类型修饰符
-type Required<T> = {
-    [P in keyof T]-?: T[P];
-};
-
-type Mutable<T> = {
-    -readonly [P in keyof T]: T[P];
-};
-
-// 条件映射类型
-type NonFunctionPropertyNames<T> = {
-    [K in keyof T]: T[K] extends Function ? never : K;
-}[keyof T];
-
-type NonFunctionProperties<T> = Pick<T, NonFunctionPropertyNames<T>>;`}
-                        </ExpandableCode>
+// { name?: string; }`}
+                            </ExpandableCode>
+                        </div>
                     </div>
                 </SecondaryCard>
 
-                <WarningCard title="使用注意事项">
+                <InfoCard title="为什么需要高级类型">
                     <ul className="list-disc pl-4 space-y-2">
-                        <li><strong>联合类型收窄：</strong>使用类型保护进行类型收窄，避免访问不存在的属性</li>
-                        <li><strong>交叉类型冲突：</strong>注意属性冲突时的类型推断结果</li>
-                        <li><strong>条件类型复杂度：</strong>避免过度嵌套的条件类型，影响可读性</li>
-                        <li><strong>映射类型性能：</strong>复杂的映射类型可能影响编译性能</li>
+                        <li><strong>业务逻辑映射：</strong>联合类型完美表达状态机、枚举等业务概念</li>
+                        <li><strong>类型安全的组合：</strong>交叉类型实现 Mixin 模式，避免多继承问题</li>
+                        <li><strong>智能类型推导：</strong>条件类型让 TypeScript 能根据输入自动推导输出类型</li>
+                        <li><strong>代码复用：</strong>映射类型避免重复定义相似的类型结构</li>
                     </ul>
+                </InfoCard>
+
+                <WarningCard title="面试常考易错点">
+                    <div className="space-y-4">
+                        <div>
+                            <h5 className="font-semibold">1. 联合类型的类型收窄理解错误</h5>
+                            <ExpandableCode language="typescript" maxHeight={150}>
+{`// ❌ 错误理解：直接访问联合类型的属性
+function printId(id: string | number) {
+    console.log(id.toUpperCase()); // 报错！number 没有这个方法
+}
+
+// ✅ 正确做法：使用类型保护
+function printId(id: string | number) {
+    if (typeof id === "string") {
+        console.log(id.toUpperCase()); // ✅ 此时 id 确定是 string
+    } else {
+        console.log(id.toFixed(2));    // ✅ 此时 id 确定是 number
+    }
+}`}
+                            </ExpandableCode>
+                        </div>
+
+                        <div>
+                            <h5 className="font-semibold">2. 交叉类型属性冲突的处理</h5>
+                            <ExpandableCode language="typescript" maxHeight={120}>
+{`// ❌ 属性类型冲突
+interface A { prop: string; }
+interface B { prop: number; }
+
+type C = A & B; // prop 的类型是 string & number = never
+
+// ✅ 正确设计：避免同名属性冲突
+interface A { name: string; }
+interface B { age: number; }`}
+                            </ExpandableCode>
+                        </div>
+
+                        <div>
+                            <h5 className="font-semibold">3. 条件类型的分布特性理解不够</h5>
+                            <ExpandableCode language="typescript" maxHeight={120}>
+{`// 条件类型遇到联合类型会分布计算
+type ToArray<T> = T extends any ? T[] : never;
+
+// 面试陷阱：这个结果是什么？
+type Result = ToArray<string | number>;
+// 答案：string[] | number[]  （不是 (string | number)[]）
+
+// 阻止分布：用 [] 包装
+type ToArray<T> = [T] extends [any] ? T[] : never;`}
+                            </ExpandableCode>
+                        </div>
+                    </div>
                 </WarningCard>
+
+                <SecondaryCard title="💡 面试高分技巧">
+                    <div className="space-y-4">
+                        <div>
+                            <h5 className="font-semibold">实现内置工具类型</h5>
+                            <ExpandableCode language="typescript" maxHeight={180}>
+{`// 面试常问：手写 Pick 和 Omit
+type MyPick<T, K extends keyof T> = {
+    [P in K]: T[P];
+};
+
+type MyOmit<T, K extends keyof T> = {
+    [P in keyof T as P extends K ? never : P]: T[P];
+};
+
+// 使用示例
+interface User { name: string; age: number; email: string; }
+type UserName = MyPick<User, "name">;        // { name: string }
+type UserProfile = MyOmit<User, "email">;    // { name: string; age: number }`}
+                            </ExpandableCode>
+                        </div>
+
+                        <div>
+                            <h5 className="font-semibold">复杂场景的类型推导</h5>
+                            <ExpandableCode language="typescript" maxHeight={150}>
+{`// 函数重载的智能推导
+function api(method: "GET"): Promise<string>;
+function api(method: "POST", data: object): Promise<number>;
+function api(method: string, data?: object) {
+    // 实现逻辑
+}
+
+// TypeScript 能根据参数自动推导返回类型
+const result1 = api("GET");        // Promise<string>
+const result2 = api("POST", {});   // Promise<number>`}
+                            </ExpandableCode>
+                        </div>
+                    </div>
+                </SecondaryCard>
+
+                <InfoCard title="面试追问点">
+                    <ul className="list-disc pl-4 space-y-2">
+                        <li><strong>性能考虑：</strong>复杂的条件类型和映射类型会影响编译速度</li>
+                        <li><strong>可读性平衡：</strong>不要为了炫技而过度使用高级类型</li>
+                        <li><strong>实际应用：</strong>能举出在实际项目中使用高级类型解决问题的例子</li>
+                        <li><strong>类型体操：</strong>了解社区中的类型体操题目和解法思路</li>
+                    </ul>
+                </InfoCard>
             </div>
         </QuestionCard>
     );
