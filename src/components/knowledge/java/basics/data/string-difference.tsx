@@ -1,5 +1,6 @@
 import { QuestionCard } from "../../../../base/knowledge_question_card"
 import ReactECharts from 'echarts-for-react';
+import { WarningCard } from "../../../../card/warning_card";
 
 /**
  * # String、StringBuilder、StringBuffer的区别
@@ -89,14 +90,13 @@ export function JavaBasicsStringDifference({ id }: { id: string }) {
                     <ReactECharts option={stringPerformanceOption} style={{ height: '300px' }} />
                 </div>
 
-                <div className="mt-3 p-3 bg-amber-50 border-l-4 border-amber-500 rounded">
-                    <h4 className="font-semibold text-amber-700 mb-2">易错点与深究</h4>
+                <WarningCard title="易错点与深究">
                     <ul className="text-sm space-y-1">
                         <li>不清楚<strong>String</strong>不可变的具体原因（<strong>final</strong>修饰数组，且没有提供修改数组内容的方法）。</li>
                         <li>混淆三者线程安全性。</li>
                         <li>不了解`String s = "a" + "b" + "c";` 在编译期会优化为 `String s = "abc";`。而循环内拼接<strong>String</strong>则会创建大量对象。</li>
                     </ul>
-                </div>
+                </WarningCard>
             </div>
         </QuestionCard>
     )

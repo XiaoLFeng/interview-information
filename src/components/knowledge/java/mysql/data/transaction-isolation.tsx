@@ -1,6 +1,7 @@
 import { QuestionCard } from "../../../../base/knowledge_question_card"
 import ReactECharts from 'echarts-for-react';
 import { useState } from 'react';
+import { WarningCard } from "../../../../card/warning_card";
 
 /**
  * MySQL 事务隔离级别详解
@@ -389,9 +390,8 @@ export function MySQLTransactionIsolation({ id }: { id: string }) {
                 </div>
 
                 {/* 常见易错点 */}
-                <div className="p-4 bg-amber-50 border-l-4 border-amber-400 rounded-r-lg">
-                    <h4 className="font-semibold text-amber-800 mb-2">⚠️ 易错点与深究</h4>
-                    <ul className="text-amber-700 text-sm space-y-2">
+                <WarningCard title="易错点与深究">
+                    <ul className="text-sm space-y-1">
                         <li>
                             <strong>误解：</strong> 一致性(C)是事务的实现手段
                             <br />
@@ -413,7 +413,7 @@ export function MySQLTransactionIsolation({ id }: { id: string }) {
                             <strong>正解：</strong> 需要在并发性能和数据一致性之间找平衡，根据业务需求选择
                         </li>
                     </ul>
-                </div>
+                </WarningCard>
             </div>
         </QuestionCard>
     )

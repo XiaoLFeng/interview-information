@@ -1,5 +1,6 @@
 import { QuestionCard } from "../../../../base/knowledge_question_card"
 import ReactECharts from 'echarts-for-react';
+import { WarningCard } from "../../../../card/warning_card";
 
 /**
  * Redis 性能特性分析
@@ -310,9 +311,8 @@ export function RedisPerformance({ id }: { id: string }) {
                 </div>
 
                 {/* 常见易错点 */}
-                <div className="p-4 bg-amber-50 border-l-4 border-amber-400 rounded-r-lg">
-                    <h4 className="font-semibold text-amber-800 mb-2">⚠️ 易错点与深究</h4>
-                    <ul className="text-amber-700 text-sm space-y-2">
+                <WarningCard title="易错点与深究">
+                    <ul className="text-sm space-y-1">
                         <li>
                             <strong>误解：</strong> 认为Redis是多线程执行命令
                             <br />
@@ -334,7 +334,7 @@ export function RedisPerformance({ id }: { id: string }) {
                             <strong>正解：</strong> 内存访问比磁盘访问快几个数量级，这是Redis快的根本原因
                         </li>
                     </ul>
-                </div>
+                </WarningCard>
             </div>
         </QuestionCard>
     )

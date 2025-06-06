@@ -1,5 +1,6 @@
 import { QuestionCard } from "../../../../base/knowledge_question_card"
 import ReactECharts from 'echarts-for-react';
+import { WarningCard } from "../../../../card/warning_card";
 
 /**
  * # Java集合框架
@@ -144,14 +145,13 @@ export function JavaBasicsCollections({ id }: { id: string }) {
                     <ReactECharts option={collectionPerformanceOption} style={{ height: '350px' }} />
                 </div>
 
-                <div className="mt-3 p-3 bg-amber-50 border-l-4 border-amber-500 rounded">
-                    <h4 className="font-semibold text-amber-700 mb-2">易错点与深究</h4>
+                <WarningCard title="易错点与深究">
                     <ul className="text-sm space-y-1">
                         <li><strong>HashMap</strong>的哈希函数、冲突解决、扩容机制细节。</li>
                         <li><strong>ConcurrentHashMap</strong>在JDK1.7和1.8+的实现差异。</li>
                         <li><strong>fail-fast</strong> 与 <strong>fail-safe</strong> 机制 (如<strong>ArrayList</strong> vs <strong>CopyOnWriteArrayList</strong>)。</li>
                     </ul>
-                </div>
+                </WarningCard>
             </div>
         </QuestionCard>
     )

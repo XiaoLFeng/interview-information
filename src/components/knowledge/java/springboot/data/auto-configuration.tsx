@@ -1,5 +1,6 @@
 import { QuestionCard } from "../../../../base/knowledge_question_card"
 import ReactECharts from 'echarts-for-react';
+import { WarningCard } from "../../../../card/warning_card";
 
 /**
  * SpringBoot 自动配置原理
@@ -332,9 +333,8 @@ public class DataSourceAutoConfiguration {
                 </div>
 
                 {/* 常见易错点 */}
-                <div className="p-4 bg-amber-50 border-l-4 border-amber-400 rounded-r-lg">
-                    <h4 className="font-semibold text-amber-800 mb-2">⚠️ 易错点与深究</h4>
-                    <ul className="text-amber-700 text-sm space-y-2">
+                <WarningCard title="易错点与深究">
+                    <ul className="text-sm space-y-1">
                         <li>
                             <strong>误解：</strong> 不清楚 <code>@ConditionalOn...</code> 条件注解的具体作用和种类
                             <br />
@@ -351,7 +351,7 @@ public class DataSourceAutoConfiguration {
                             <strong>正解：</strong> 只有满足条件注解要求的配置才会生效，这是一个智能的条件化过程
                         </li>
                     </ul>
-                </div>
+                </WarningCard>
             </div>
         </QuestionCard>
     )

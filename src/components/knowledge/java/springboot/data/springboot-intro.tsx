@@ -1,5 +1,6 @@
 import { QuestionCard } from "../../../../base/knowledge_question_card"
 import ReactECharts from 'echarts-for-react';
+import { WarningCard } from "../../../../card/warning_card";
 
 /**
  * SpringBoot 简介与核心概念
@@ -209,9 +210,8 @@ export function SpringBootIntro({ id }: { id: string }) {
                 </div>
 
                 {/* 常见易错点 */}
-                <div className="p-4 bg-amber-50 border-l-4 border-amber-400 rounded-r-lg">
-                    <h4 className="font-semibold text-amber-800 mb-2">⚠️ 易错点与深究</h4>
-                    <ul className="text-amber-700 text-sm space-y-2">
+                <WarningCard title="易错点与深究">
+                    <ul className="text-sm space-y-1">
                         <li>
                             <strong>误解：</strong> 认为SpringBoot完全取代了Spring Framework
                             <br />
@@ -228,7 +228,7 @@ export function SpringBootIntro({ id }: { id: string }) {
                             <strong>正解：</strong> SpringBoot支持所有Spring功能，同时提供了更好的开发体验
                         </li>
                     </ul>
-                </div>
+                </WarningCard>
             </div>
         </QuestionCard>
     )

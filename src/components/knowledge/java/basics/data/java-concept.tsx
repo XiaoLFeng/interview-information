@@ -1,5 +1,6 @@
 import { QuestionCard } from "../../../../base/knowledge_question_card"
 import ReactECharts from 'echarts-for-react';
+import { InfoCard } from "../../../../card/info_card";
 
 /**
  * # 什么是 Java
@@ -183,9 +184,8 @@ export function JavaBasicsWhatIsJava({ id }: { id: string }) {
                 </div>
 
                 {/* 应用场景 */}
-                <div className="p-4 bg-yellow-50 rounded-lg border border-yellow-200">
-                    <h4 className="font-semibold text-yellow-800 mb-2">🎯 主要应用场景</h4>
-                    <div className="grid md:grid-cols-2 gap-3 text-yellow-700 text-sm">
+                <InfoCard title="🎯 主要应用场景">
+                    <div className="grid md:grid-cols-2 gap-3 text-sm">
                         <div>
                             <strong>企业级应用开发：</strong>
                             <p>大型分布式系统、微服务架构、企业管理系统</p>
@@ -203,7 +203,7 @@ export function JavaBasicsWhatIsJava({ id }: { id: string }) {
                             <p>Hadoop、Spark、Elasticsearch等大数据框架</p>
                         </div>
                     </div>
-                </div>
+                </InfoCard>
             </div>
         </QuestionCard>
     )

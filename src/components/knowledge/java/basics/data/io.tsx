@@ -1,5 +1,6 @@
 import { QuestionCard } from "../../../../base/knowledge_question_card"
 import ReactECharts from 'echarts-for-react';
+import { WarningCard } from "../../../../card/warning_card";
 
 /**
  * # Java I/O模型
@@ -81,14 +82,13 @@ export function JavaBasicsIO({ id }: { id: string }) {
                     <ReactECharts option={ioComparisonOption} style={{ height: '350px' }} />
                 </div>
 
-                <div className="mt-3 p-3 bg-amber-50 border-l-4 border-amber-500 rounded">
-                    <h4 className="font-semibold text-amber-700 mb-2">易错点与深究</h4>
+                <WarningCard title="易错点与深究">
                     <ul className="text-sm space-y-1">
                         <li>混淆同步/异步与阻塞/非阻塞概念。</li>
                         <li><strong>NIO</strong>核心组件及其关系不清楚。</li>
                         <li>零拷贝（<strong>Zero-copy</strong>）概念。</li>
                     </ul>
-                </div>
+                </WarningCard>
             </div>
         </QuestionCard>
     )

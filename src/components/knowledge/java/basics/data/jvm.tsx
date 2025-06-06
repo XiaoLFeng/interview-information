@@ -1,5 +1,6 @@
 import { QuestionCard } from "../../../../base/knowledge_question_card"
 import ReactECharts from 'echarts-for-react';
+import { WarningCard } from "../../../../card/warning_card";
 
 /**
  * # JVM相关
@@ -157,15 +158,14 @@ export function JavaBasicsJVM({ id }: { id: string }) {
 
                 <p><strong>JVM调优初步：</strong>常用参数如 <strong>-Xms</strong>, <strong>-Xmx</strong>, <strong>-Xmn</strong>, <strong>-XX:MetaspaceSize</strong>, <strong>-XX:MaxMetaspaceSize</strong>, <strong>-XX:+PrintGCDetails</strong>。</p>
 
-                <div className="mt-3 p-3 bg-amber-50 border-l-4 border-amber-500 rounded">
-                    <h4 className="font-semibold text-amber-700 mb-2">易错点与深究</h4>
+                <WarningCard title="易错点与深究">
                     <ul className="text-sm space-y-1">
                         <li>双亲委派模型及其破坏场景。</li>
                         <li>不同垃圾收集器的适用场景和工作原理。</li>
                         <li><strong>OOM</strong>和<strong>StackOverflowError</strong>的原因及排查。</li>
                         <li>强引用、软引用、弱引用、虚引用。</li>
                     </ul>
-                </div>
+                </WarningCard>
             </div>
         </QuestionCard>
     )

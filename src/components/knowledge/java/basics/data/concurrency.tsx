@@ -1,5 +1,6 @@
 import { QuestionCard } from "../../../../base/knowledge_question_card"
 import ReactECharts from 'echarts-for-react';
+import { WarningCard } from "../../../../card/warning_card";
 
 /**
  * # Java并发编程
@@ -131,8 +132,7 @@ export function JavaBasicsConcurrency({ id }: { id: string }) {
 
                 <p><strong>ThreadLocal：</strong>为每个线程提供变量副本，实现线程间数据隔离。常用于存储用户身份信息、数据库连接等。注意：使用完后及时<strong>remove()</strong>防止内存泄漏（尤其在线程池场景）。</p>
 
-                <div className="mt-3 p-3 bg-amber-50 border-l-4 border-amber-500 rounded">
-                    <h4 className="font-semibold text-amber-700 mb-2">易错点与深究</h4>
+                <WarningCard title="易错点与深究">
                     <ul className="text-sm space-y-1">
                         <li><strong>volatile</strong>不能保证原子性，常与CAS配合使用。</li>
                         <li><strong>ReentrantLock</strong>忘记在<strong>finally</strong>中<strong>unlock()</strong>。</li>
@@ -140,7 +140,7 @@ export function JavaBasicsConcurrency({ id }: { id: string }) {
                         <li><strong>AQS</strong>原理和<strong>CAS</strong>操作。</li>
                         <li>死锁的产生条件和避免方法。</li>
                     </ul>
-                </div>
+                </WarningCard>
             </div>
         </QuestionCard>
     )
