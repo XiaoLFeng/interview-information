@@ -5,7 +5,14 @@ import {
     JavaBasicsCollections,
     JavaBasicsConcurrency,
     JavaBasicsJVM,
-    JavaBasicsIO
+    JavaBasicsIO,
+    JavaBasicsMethodOverloadOverride,
+    JavaBasicsInterfaceAbstract,
+    JavaBasicsFinalFinallyFinalize,
+    JavaBasicsAutoboxingUnboxing,
+    JavaBasicsEqualsHashcode,
+    JavaBasicsMapComparison,
+    JavaBasicsThreadProcess
 } from "../../../../components/knowledge/java/basics";
 
 /**
@@ -33,6 +40,13 @@ export function JavaBasics() {
                 <JavaBasicsConcurrency id="java-basics-5" />
                 <JavaBasicsJVM id="java-basics-6" />
                 <JavaBasicsIO id="java-basics-7" />
+                <JavaBasicsMethodOverloadOverride id="java-basics-8" />
+                <JavaBasicsInterfaceAbstract id="java-basics-9" />
+                <JavaBasicsFinalFinallyFinalize id="java-basics-10" />
+                <JavaBasicsAutoboxingUnboxing id="java-basics-11" />
+                <JavaBasicsEqualsHashcode id="java-basics-12" />
+                <JavaBasicsMapComparison id="java-basics-13" />
+                <JavaBasicsThreadProcess id="java-basics-14" />
             </div>
         </div>
     );
