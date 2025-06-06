@@ -27,4 +27,8 @@ alwaysApply: false
 
 对于使用代码，统一使用 `oneDark` 主题。
 
-你可以参考现有文件如 [map-comparison.tsx](mdc:src/components/knowledge/java/basics/data/map-comparison.tsx) 等已有文件进行查看
+你可以参考现有文件如 [map-comparison.tsx](mdc:src/components/knowledge/java/basics/data/map-comparison.tsx) 等已有文件进行查看。
+
+路由文件在 [route.tsx](mdc:src/route.tsx)。
+
+请注意对于文字部分请注意使用 DaisyUI 主题的颜色，不要轻易使用 tailwindcss 颜色配置，否则无法切换主题保证显示问题。

@@ -26,7 +26,7 @@ export function QuestionCard({ question, children }: QuestionCardProps) {
     const [showAnswer, setShowAnswer] = useState(false);
 
     return (
-        <div className="card bg-base-100 rounded-lg border border-base-300/20 shadow-md hover:shadow-lg transition">
+        <div className="card bg-linear-to-br from-secondary/10 to-secondary/2 rounded-lg shadow-md hover:shadow-lg transition">
             <div className="card-body p-4">
                 {/* 标题和标签区域 */}
                 <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
