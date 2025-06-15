@@ -158,7 +158,7 @@ var b byte = 'a'`}
                                 <li><strong>数组 (Array):</strong> 固定长度的同类型元素序列。<code>[n]T</code></li>
                                 <li><strong>切片 (Slice):</strong> 动态长度的同类型元素序列，是对数组的引用。<code>[]T</code></li>
                                 <li><strong>映射 (Map):</strong>键值对的无序集合。<code>map[K]V</code></li>
-                                <li><strong>结构体 (Struct):</strong>将不同类型的字段组合在一起。<code>struct { ... }</code></li>
+                                <li><strong>结构体 (Struct):</strong>将不同类型的字段组合在一起。<code>struct  ...</code></li>
                             </ul>
                             <ExpandableCode language="go" maxHeight={200}>
 {`// 数组
