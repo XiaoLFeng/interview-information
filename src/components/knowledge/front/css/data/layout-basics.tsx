@@ -1,6 +1,5 @@
 import { QuestionCard } from "../../../../base/knowledge_question_card";
 import { InfoCard } from "../../../../card/info_card";
-import { WarningCard } from "../../../../card/warning_card";
 import { SuccessCard } from "../../../../card/success_card";
 import { SecondaryCard } from "../../../../card/secondary_card";
 import { ExpandableCode } from "../../../../base/expandable_code";

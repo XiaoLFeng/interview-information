@@ -1,11 +1,6 @@
 import { Outlet } from "react-router";
 import { SideMenu } from "../../../components/base/knowledge_side_menu";
 import type { MenuItem } from "../../../components/base/knowledge_side_menu";
-import { GoBasicsPage } from "./data/go_basics";
-import { GoConcurrencyPage } from "./data/go_concurrency";
-import { GoWebDevelopmentPage } from "./data/go_web_development";
-import { GoDatabasesPage } from "./data/go_databases";
-import { GoTestingPage } from "./data/go_testing";
 
 // Go 知识点菜单
 const goMenuItems: MenuItem[] = [
