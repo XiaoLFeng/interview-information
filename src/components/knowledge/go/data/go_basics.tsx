@@ -185,11 +185,9 @@ p := Person{Name: "Alice", Age: 30}`}
                             <h4 className="font-semibold">指针 (Pointers)</h4>
                             <p>存储变量的内存地址。使用 <code>*</code> 定义指针类型，<code>&</code> 获取地址，<code>*</code> 解引用。</p>
                              <ExpandableCode language="go" maxHeight={100}>
-{`var x int = 10
-var p *int = &x // p 指向 x
-fmt.Println(*p) // 输出 10
-*p = 20         // 修改 x 的值为 20
-fmt.Println(x)  // 输出 20`}
+{`package main
+import "fmt"
+func main() { fmt.Println("Test") }`}
                             </ExpandableCode>
                         </div>
                         <div>
