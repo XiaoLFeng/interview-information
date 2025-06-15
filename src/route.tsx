@@ -1,7 +1,13 @@
 import { createBrowserRouter } from "react-router";
 import BaseIndex from "./views/base_index";
 import { BaseJava } from "./views/knowledge/java/base_java";
+import { BaseGo } from "./views/knowledge/go/base_go";
 import { BaseKnowledge } from "./views/base_knowledge";
+import { GoBasicsPage } from "./views/knowledge/go/data/go_basics";
+import { GoConcurrencyPage } from "./views/knowledge/go/data/go_concurrency";
+import { GoWebDevelopmentPage } from "./views/knowledge/go/data/go_web_development";
+import { GoDatabasesPage } from "./views/knowledge/go/data/go_databases";
+import { GoTestingPage } from "./views/knowledge/go/data/go_testing";
 import { JavaBasics } from "./views/knowledge/java/data/java_basics";
 import { JavaSpringBoot } from "./views/knowledge/java/data/java_springboot";
 import { JavaRedis } from "./views/knowledge/java/data/java_redis";
@@ -92,15 +98,29 @@ export const router = createBrowserRouter([
             },
             {
                 path: "go",
-                Component: () => (
-                    <div className="flex items-center justify-center min-h-96">
-                        <div className="text-center">
-                            <i className="fi fi-rr-house-leave text-6xl text-accent mb-4"></i>
-                            <h3 className="text-2xl font-bold text-accent mb-2">Go 知识库</h3>
-                            <p className="text-base-content/70">Golang 基础、并发、微服务等内容正在准备中...</p>
-                        </div>
-                    </div>
-                )
+                Component: BaseGo,
+                children: [
+                    {
+                        path: "", // Default child route for /knowledge/go
+                        Component: GoBasicsPage
+                    },
+                    {
+                        path: "concurrency",
+                        Component: GoConcurrencyPage
+                    },
+                    {
+                        path: "web-development",
+                        Component: GoWebDevelopmentPage
+                    },
+                    {
+                        path: "databases",
+                        Component: GoDatabasesPage
+                    },
+                    {
+                        path: "testing",
+                        Component: GoTestingPage
+                    }
+                ]
             }
         ]
     }
